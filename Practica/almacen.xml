@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Almacen>
+          <Productos>
+                    <Producto Código="1234343">
+                              <Nombre>3434</Nombre>
+                              <Descripción>4343date</Descripción>
+                              <Stock>4328</Stock>
+                              <Pendientes>a434le</Pendientes>
+                              <Localización>
+                                        <Pasillo>431</Pasillo>
+                                        <Estantería>fefef</Estantería>
+                                        <Estante>fgdfefe</Estante>
+                              </Localización>
+                    </Producto>
+                    <Producto Código="7565656">
+                              <Nombre>3434</Nombre>
+                              <Descripción>4343date</Descripción>
+                              <Stock>4328</Stock>
+                              <Pendientes>a434le</Pendientes>
+                              <Localización>
+                                        <Pasillo>431</Pasillo>
+                                        <Estantería>fefef</Estantería>
+                                        <Estante>fgdfefe</Estante>
+                              </Localización>
+                    </Producto>
+          </Productos>
+</Almacen>
