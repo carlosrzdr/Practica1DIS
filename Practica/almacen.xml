@@ -39,4 +39,19 @@
                               </Dirección>
                     </Cliente>
           </Clientes>
+          <Pedidos>
+                    <Pedido>
+                              <Productos>2</Productos>
+                              <Cantidad>John</Cantidad>
+                              <Destinatario>Cena</Destinatario>
+                              <Fecha>45</Fecha>
+                              <Dirección>
+                                        <Calle>Male</Calle>
+                                        <Número>feff</Número>
+                                        <CódigoPostal>ggfegf</CódigoPostal>
+                                        <Población>gege</Población>
+                                        <País>ggeg</País>
+                              </Dirección>
+                    </Pedido>
+          </Pedidos>
 </Almacen>
