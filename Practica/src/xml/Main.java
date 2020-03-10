@@ -31,11 +31,16 @@ public class Main {
 	            // Añadimos los elementos de Productos, Clientes y Pedidos
 	            Element productos = doc.createElement("Productos");            
 	            rootElement.appendChild(productos);
+	            Element clientes = doc.createElement("Clientes");            
+	            rootElement.appendChild(clientes);
 	       
 	            //
 	            productos.appendChild(createProdElement(doc, "1234343", "3434", "4343date", "4328", "a434le", "431", "fefef", "fgdfefe"));	  
 	            productos.appendChild(createProdElement(doc, "7565656", "3434", "4343date", "4328", "a434le", "431", "fefef", "fgdfefe"));	   
 
+	            // 
+	            clientes.appendChild(createClienElement(doc, "2", "John", "Cena", "45", "Male", "feff", "ggfegf", "gege", "ggeg"));
+	            
 	            // Necesario para generar el output
 	            TransformerFactory transformerFactory = TransformerFactory.newInstance();
 	            Transformer transformer = transformerFactory.newTransformer();
@@ -80,6 +85,28 @@ public class Main {
 		
 		        return producto;
 		    }
+	 
+	 private static Node createClienElement(Document clien, String nombre , String apellidos , String email, String telefono,
+		        String calle, String numero, String codigop, String poblacion, String pais) {
+		        Element cliente = clien.createElement("Cliente");
+		        Element direccion = clien.createElement("Dirección");
+		      
+		     
+		        cliente.appendChild(createElements(clien, cliente, "Nombre", nombre));		       
+		        cliente.appendChild(createElements(clien, cliente, "Apellidos", apellidos));		        
+		        cliente.appendChild(createElements(clien, cliente, "Email", email));		        
+		        cliente.appendChild(createElements(clien, cliente, "Telefono", telefono));        
+		        		        
+		        cliente.appendChild(direccion);
+		        direccion.appendChild(createElements(clien, direccion, "Calle", calle));
+		        direccion.appendChild(createElements(clien, direccion, "Número", numero));
+		        direccion.appendChild(createElements(clien, direccion, "CódigoPostal", codigop));
+		        direccion.appendChild(createElements(clien, direccion, "Población", poblacion));
+		        direccion.appendChild(createElements(clien, direccion, "País", pais));
+		        
+		        return cliente;
+		    }
+	    
 	 
 	 private static Node createElements(Document doc, Element element, String name, String value) {
 	        Element node = doc.createElement(name);

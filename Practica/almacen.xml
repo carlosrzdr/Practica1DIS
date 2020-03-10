@@ -24,4 +24,19 @@
                               </Localización>
                     </Producto>
           </Productos>
+          <Clientes>
+                    <Cliente>
+                              <Nombre>2</Nombre>
+                              <Apellidos>John</Apellidos>
+                              <Email>Cena</Email>
+                              <Telefono>45</Telefono>
+                              <Dirección>
+                                        <Calle>Male</Calle>
+                                        <Número>feff</Número>
+                                        <CódigoPostal>ggfegf</CódigoPostal>
+                                        <Población>gege</Población>
+                                        <País>ggeg</País>
+                              </Dirección>
+                    </Cliente>
+          </Clientes>
 </Almacen>
