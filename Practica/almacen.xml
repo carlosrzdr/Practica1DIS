@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Almacen>
           <Productos>
-                    <Producto Código="wq">
+                    <Producto Código="wqw">
                               <Nombre>wq</Nombre>
                               <Descripción>wq</Descripción>
-                              <Stock>wq</Stock>
+                              <Stock>wqw</Stock>
                               <Pendientes>wq</Pendientes>
                               <Localización>
-                                        <Pasillo>wq</Pasillo>
+                                        <Pasillo>qw</Pasillo>
                                         <Estantería>wq</Estantería>
                                         <Estante>wq</Estante>
                               </Localización>
@@ -15,32 +15,32 @@
           </Productos>
           <Clientes>
                     <Cliente>
-                              <Nombre>trt</Nombre>
-                              <Apellidos>rt</Apellidos>
-                              <Email>rtr</Email>
-                              <Telefono>tr</Telefono>
+                              <Nombre>rer</Nombre>
+                              <Apellidos>ere</Apellidos>
+                              <Email>re</Email>
+                              <Telefono>re</Telefono>
                               <Dirección>
-                                        <Calle>tr</Calle>
-                                        <Número>trt</Número>
-                                        <CódigoPostal>tr</CódigoPostal>
-                                        <Población>tr</Población>
-                                        <País>tr</País>
+                                        <Calle>rer</Calle>
+                                        <Número>err</Número>
+                                        <CódigoPostal>re</CódigoPostal>
+                                        <Población>re</Población>
+                                        <País>re</País>
                               </Dirección>
                     </Cliente>
           </Clientes>
           <Pedidos>
-                    <Cliente>
-                              <Nombre>yt</Nombre>
-                              <Apellidos>yyt</Apellidos>
-                              <Email>yt</Email>
-                              <Telefono>yt</Telefono>
+                    <Pedido>
+                              <Productos>hth</Productos>
+                              <Cantidad>hth</Cantidad>
+                              <Destinatario>th</Destinatario>
+                              <Fecha>th</Fecha>
                               <Dirección>
-                                        <Calle>yt</Calle>
-                                        <Número>yt</Número>
-                                        <CódigoPostal>yt</CódigoPostal>
-                                        <Población>yt</Población>
-                                        <País>yt</País>
+                                        <Calle>th</Calle>
+                                        <Número>ht</Número>
+                                        <CódigoPostal>ht</CódigoPostal>
+                                        <Población>ht</Población>
+                                        <País>ht</País>
                               </Dirección>
-                    </Cliente>
+                    </Pedido>
           </Pedidos>
 </Almacen>

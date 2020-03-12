@@ -173,7 +173,7 @@ public class Main {
 		System.out.println("\tPaís:");
 		pais = in.readLine();
 		
-		return (createClienElement(prod, productos, cantidad, destinatario, fecha, calle, numero, codigop, poblacion, pais));
+		return (createPedElement(prod, productos, cantidad, destinatario, fecha, calle, numero, codigop, poblacion, pais));
 	}
 	
 	 private static Node createProdElement(Document prod, String codigo, String nombre , String descripcion, String stock,
