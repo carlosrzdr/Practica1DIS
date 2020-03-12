@@ -58,8 +58,8 @@ public class Main {
 					clientes.appendChild(cliente);
 						break;
 				case 3:
-					pedido = productoSubMenu(doc);
-					productos.appendChild(pedido);
+					pedido = pedidoSubMenu(doc);
+					pedidos.appendChild(pedido);
 						break;
 				}
 			}
@@ -146,6 +146,34 @@ public class Main {
 		pais = in.readLine();
 		
 		return (createClienElement(prod, nombre, apellidos, email, telefono, calle, numero, codigop, poblacion, pais));
+	}
+	
+	public static Node pedidoSubMenu(Document prod) throws IOException {
+		java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		String productos ; String cantidad ; String destinatario;
+        String fecha; String calle; String numero; String codigop; String poblacion; String pais;
+        System.out.println("Pedido.");
+        System.out.println("Productos:");
+		productos = in.readLine();
+		System.out.println("Cantidad:");
+		cantidad = in.readLine();
+		System.out.println("Destinatario:");
+		destinatario = in.readLine();
+		System.out.println("Fecha de entrega estimada:");
+		fecha = in.readLine();
+		System.out.println("Dirección de entrega.");
+		System.out.println("\tCalle:");
+		calle = in.readLine();
+		System.out.println("\tNúmero:");
+		numero = in.readLine();
+		System.out.println("\tCódigo postal:");
+		codigop = in.readLine();
+		System.out.println("\tPoblación:");
+		poblacion = in.readLine();
+		System.out.println("\tPaís:");
+		pais = in.readLine();
+		
+		return (createClienElement(prod, productos, cantidad, destinatario, fecha, calle, numero, codigop, poblacion, pais));
 	}
 	
 	 private static Node createProdElement(Document prod, String codigo, String nombre , String descripcion, String stock,
