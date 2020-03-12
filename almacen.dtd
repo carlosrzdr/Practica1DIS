@@ -42,5 +42,6 @@
 
 <!ATTLIST Producto Código ID #REQUIRED>
 <!ATTLIST Cliente Código ID #REQUIRED>
+<!ATTLIST Pedido Código ID #REQUIRED>
 
 ]>
