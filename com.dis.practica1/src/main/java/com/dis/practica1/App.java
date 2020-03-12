@@ -13,7 +13,9 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
+import org.w3c.dom.DocumentType;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
@@ -91,9 +93,16 @@ public class App {
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
 		
+		// Necesario para mostrar el !doctype
+		transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+		DOMImplementation domImpl = doc.getImplementation();
+		DocumentType doctype = domImpl.createDocumentType("doctype",
+		    "PracticaDis",
+		    "Almacen.dtd");
 		// Hacemos la tabulacion necesaria para el xml
 		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-		transformer.setOutputProperty(OutputKeys.DOCTYPE_PUBLIC,"yes");
+		transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, doctype.getSystemId());
 		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "10");
 		DOMSource source = new DOMSource(doc);
 
@@ -168,6 +177,7 @@ public class App {
         String codigop; 
         String poblacion;
         String pais;
+        String codigo;
         java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         
 		System.out.println("Cliente ->");
@@ -176,6 +186,9 @@ public class App {
         
 		System.out.print("Apellidos:");
         apellidos = in.readLine();
+        
+        System.out.print("ID:");
+        codigo = in.readLine();
         
 		System.out.print("Email:");
         email = in.readLine();
@@ -199,11 +212,12 @@ public class App {
 		System.out.print("\tPais:");
         pais = in.readLine();
 		
-		return (createClienElement(prod, nombre, apellidos, email, telefono, calle, numero, codigop, poblacion, pais));
+		return (createClienElement(prod, nombre, apellidos, email, telefono, calle, numero, codigop, poblacion, pais, codigo));
 	}
 	
 	public static Node pedidoSubMenu(Document prod) throws IOException {
-        String productos;
+        String infoproducto;
+        String codigo;
         String cantidad; 
         String destinatario;
         String fecha;
@@ -212,19 +226,27 @@ public class App {
         String codigop;
         String poblacion;
         String pais;
+        String id;
         java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("Pedido ->");
-        System.out.print("Productos:");
-        productos = in.readLine();
+        System.out.print("\tId:");
+        id = in.readLine();
         
-		System.out.print("Cantidad:");
+        System.out.println("\tProducto ->");
+        System.out.print("\n\t\tCodigo:");
+        codigo = in.readLine();
+        
+        System.out.print("\t\tInfo:");
+        infoproducto = in.readLine();
+        
+		System.out.print("\t\tCantidad:");
         cantidad = in.readLine();
         
-		System.out.print("Destinatario:");
+		System.out.println("Destinatario:");
         destinatario = in.readLine();
         
-		System.out.print("Fecha de entrega estimada:");
+		System.out.println("Fecha de entrega estimada:");
         fecha = in.readLine();
         
 		System.out.println("Direccion de entrega ->");
@@ -243,7 +265,7 @@ public class App {
 		System.out.print("\tPais:");
 		pais = in.readLine();
 		
-		return (createPedElement(prod, productos, cantidad, destinatario, fecha, calle, numero, codigop, poblacion, pais));
+		return (createPedElement(prod, codigo, infoproducto, cantidad, destinatario, fecha, calle, numero, codigop, poblacion, pais, id));
 	}
 	
     private static Node createProdElement(Document prod, String codigo, String nombre , String descripcion, String stock, 
@@ -269,9 +291,11 @@ public class App {
     }
 	 
     private static Node createClienElement(Document clien, String nombre , String apellidos , String email, String telefono,
-                                           String calle, String numero, String codigop, String poblacion, String pais) {
+                                           String calle, String numero, String codigop, String poblacion, String pais, String codigo) {
         Element cliente = clien.createElement("Cliente");
         Element direccion = clien.createElement("Direccion");
+
+        cliente.setAttribute("Id", codigo);
         
         cliente.appendChild(createElements(clien, cliente, "Nombre", nombre));		       
         cliente.appendChild(createElements(clien, cliente, "Apellidos", apellidos));		        
@@ -288,13 +312,19 @@ public class App {
         return cliente;
     }
 	    
-    private static Node createPedElement(Document ped, String productos , String cantidad , String destinatario,
-                                         String fecha, String calle, String numero, String codigop, String poblacion, String pais) {
+    private static Node createPedElement(Document ped, String nombreproducto , String cantidad , String destinatario,
+                                         String fecha, String calle, String numero, String codigop, String poblacion, String pais, String codigo, String id) {
         Element pedido = ped.createElement("Pedido");
         Element direccion = ped.createElement("Direccion");
+        Element producto = ped.createElement("Producto");
         
-        pedido.appendChild(createElements(ped, pedido, "Productos", productos));
-        pedido.appendChild(createElements(ped, pedido, "Cantidad", cantidad));
+        pedido.setAttribute("Id", id);
+        producto.setAttribute("Código", codigo);
+        
+        pedido.appendChild(producto);
+        producto.appendChild(createElements(ped, pedido, "Info", nombreproducto));
+        producto.appendChild(createElements(ped, pedido, "Cantidad", cantidad));
+        
         pedido.appendChild(createElements(ped, pedido, "Destinatario", destinatario));		       
         pedido.appendChild(createElements(ped, pedido, "Fecha", fecha));
         
