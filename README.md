@@ -1,2 +1,2 @@
-# Practica1DIS
-Practice 1 for DIS
+# Práctica 1 - DIS
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Almacen>
+          <Productos>
+                    <Producto Codigo="fef">
+                              <Nombre>fe</Nombre>
+                              <Descripcion>fe</Descripcion>
+                              <Stock>fe</Stock>
+                              <Pendientes>fe</Pendientes>
+                              <Localizacion>
+                                        <Pasillo>fe</Pasillo>
+                                        <Estanteria>fe</Estanteria>
+                                        <Estante>fe</Estante>
+                              </Localizacion>
+                    </Producto>
+                    <Producto Codigo="yt">
+                              <Nombre>yt</Nombre>
+                              <Descripcion>yt</Descripcion>
+                              <Stock>yt</Stock>
+                              <Pendientes>yt</Pendientes>
+                              <Localizacion>
+                                        <Pasillo>yt</Pasillo>
+                                        <Estanteria>yt</Estanteria>
+                                        <Estante>yt</Estante>
+                              </Localizacion>
+                    </Producto>
+          </Productos>
+</Almacen>
