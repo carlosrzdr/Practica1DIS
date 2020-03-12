@@ -303,16 +303,8 @@ public class App {
     }
 
     public static void clear() {
-        final String os = System.getProperty("os.name");
-
-        if (os.contains("Windows"))
-        {
-            Runtime.getRuntime().exec("cls");
-        }
-        else
-        {
-            Runtime.getRuntime().exec("clear");
-        }
+        System.out.print("\033[2J");
+        System.out.flush();
     }
 	 
 	public static void menu() {
@@ -321,5 +313,7 @@ public class App {
         System.out.println("2.- Introducir Cliente");
         System.out.println("3.- Introducir Pedido");
         System.out.println("0.- Salir");
+
+        System.out.println("\nOpcion:");
     }
 }
