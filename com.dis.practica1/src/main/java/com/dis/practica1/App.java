@@ -34,13 +34,14 @@ public class App {
 			
 			// Creamos los elementos Productos, Clientes y Pedidos
 			Element productos = doc.createElement("Productos");            
-			rootElement.appendChild(productos);
-			Element clientes = doc.createElement("Clientes");            
-			rootElement.appendChild(clientes);
+			Element clientes = doc.createElement("Clientes");            			
 			Element pedidos = doc.createElement("Pedidos");            
-			rootElement.appendChild(pedidos);
+			
 		
 			int option = -1;    
+			int flag1=0; 
+			int flag2=0; 
+			int flag3=0;    
 			Node producto;
 			Node cliente;
 			Node pedido;
@@ -55,18 +56,30 @@ public class App {
                 switch(option) {
                     case 1:
                         clear();
+                        if(flag1==0) {
+                        	rootElement.appendChild(productos);
+                        	flag1++;
+                        }
                         producto = productoSubMenu(doc);
                         productos.appendChild(producto);
                         
                         break;
                     case 2:
                         clear();
+                        if(flag2==0) {
+                        	rootElement.appendChild(clientes);
+                        	flag2++;
+                        }
                         cliente = clienteSubMenu(doc);
                         clientes.appendChild(cliente);
                         
                         break;
                     case 3:
                         clear();
+                        if(flag3==0) {
+                        	rootElement.appendChild(pedidos);
+                        	flag3++;
+                        }
                         pedido = pedidoSubMenu(doc);
                         pedidos.appendChild(pedido);
                         
