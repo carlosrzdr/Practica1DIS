@@ -27,6 +27,18 @@
 <!ELEMENT País (#PCDATA)>
 
 <!ELEMENT Pedidos (Pedido*)>
+<!ELEMENT Pedido (Productos, Destinatario, Fecha, Dirección)>
+<!ELEMENT Productos (Producto+)>
+<!ELEMENT Producto (Cantidad)>
+<!ELEMENT Cantidad (#PCDATA)>
+<!ELEMENT Destinatario (#PCDATA)>
+<!ELEMENT Fecha (#PCDATA)>
+<!ELEMENT Dirección (Calle, Número, CódigoPostal, Población, País)>
+<!ELEMENT Calle (#PCDATA)>
+<!ELEMENT Número (#PCDATA)>
+<!ELEMENT CódigoPostal (#PCDATA)>
+<!ELEMENT Población (#PCDATA)>
+<!ELEMENT País (#PCDATA)>
 
 <!ATTLIST Producto Código ID #REQUIRED>
 <!ATTLIST Cliente Código ID #REQUIRED>
