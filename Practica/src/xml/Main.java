@@ -61,6 +61,11 @@ public class Main {
 					pedido = pedidoSubMenu(doc);
 					pedidos.appendChild(pedido);
 						break;
+				case 4:
+					String filePath = "MiTienda.xml"; //poner nombre del documetno origen
+					File xmlFile = new File(filePath);
+					doc = dBuilder.parse(xmlFile);
+					break;
 				}
 			}
 			
@@ -252,6 +257,7 @@ public class Main {
 			System.out.println("1.- Introducir Producto");
 			System.out.println("2.- Introducir Cliente");
 			System.out.println("3.- Introducir Pedido");
+			System.out.println("4.- Cargar documetno");
 			System.out.println("0.- Salir");
 		}
 
