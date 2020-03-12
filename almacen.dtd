@@ -1,0 +1,21 @@
+<!DOCTYPE Almacen
+[
+<!ELEMENT Almacen (Productos,Clientes,Pedidos)>
+
+<!ELEMENT Productos (Producto+)>
+<!ELEMENT Producto (Nombre,Descripción, Stock, Pendientes, Localización)>
+<!ELEMENT Nombre (#PCDATA)>
+<!ELEMENT Descripción (#PCDATA)>
+<!ELEMENT Stock (#PCDATA)>
+<!ELEMENT Pendientes (#PCDATA)>
+<!ELEMENT Localización (Pasillo, Estantería, Estante)>
+<!ELEMENT Pasillo (#PCDATA)>
+<!ELEMENT Estantería (#PCDATA)>
+<!ELEMENT Estante (#PCDATA)>
+
+<!ELEMENT Clientes (Cliente*)>
+<!ELEMENT Pedidos (Pedido*)>
+
+<!ATTLIST Producto Código ID #REQUIRED>
+
+]>
