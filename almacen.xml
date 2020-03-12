@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Almacen>
+          <Productos>
+                    <Producto Codigo="a120">
+                              <Nombre>Juego</Nombre>
+                              <Descripcion>pa jugar</Descripcion>
+                              <Stock>2</Stock>
+                              <Pendientes>10</Pendientes>
+                              <Localizacion>
+                                        <Pasillo>23</Pasillo>
+                                        <Estanteria>2</Estanteria>
+                                        <Estante>1</Estante>
+                              </Localizacion>
+                    </Producto>
+          </Productos>
+          <Clientes/>
+          <Pedidos/>
+</Almacen>
