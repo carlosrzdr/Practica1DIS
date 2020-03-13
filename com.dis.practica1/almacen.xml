@@ -3,43 +3,15 @@
 <Almacen>
           <Productos>
                     <Producto Codigo="123">
-                              <NombreProducto>fg</NombreProducto>
-                              <Descripcion>f</Descripcion>
-                              <Stock>f</Stock>
-                              <Pendientes>f</Pendientes>
+                              <NombreProducto>u</NombreProducto>
+                              <Descripcion>u</Descripcion>
+                              <Stock>u</Stock>
+                              <Pendientes>u</Pendientes>
                               <Localizacion>
-                                        <Pasillo>f</Pasillo>
-                                        <Estanteria>f</Estanteria>
-                                        <Estante>f</Estante>
+                                        <Pasillo>u</Pasillo>
+                                        <Estanteria>u</Estanteria>
+                                        <Estante>u</Estante>
                               </Localizacion>
                     </Producto>
           </Productos>
-          <Clientes>
-                    <Cliente Id="12">
-                              <Nombre>12</Nombre>
-                              <Apellidos>f</Apellidos>
-                              <Email>f</Email>
-                              <Telefono>f</Telefono>
-                              <Direccion>
-                                        <Calle>f</Calle>
-                                        <Numero>f</Numero>
-                                        <CodigoPostal>f</CodigoPostal>
-                                        <Poblacion>f</Poblacion>
-                                        <Pais>f</Pais>
-                              </Direccion>
-                    </Cliente>
-          </Clientes>
-          <Pedidos>
-                    <Producto Codigo="23">
-                              <NombreProducto>z</NombreProducto>
-                              <Descripcion>z</Descripcion>
-                              <Stock>z</Stock>
-                              <Pendientes>z</Pendientes>
-                              <Localizacion>
-                                        <Pasillo>z</Pasillo>
-                                        <Estanteria>z</Estanteria>
-                                        <Estante>z</Estante>
-                              </Localizacion>
-                    </Producto>
-          </Pedidos>
 </Almacen>

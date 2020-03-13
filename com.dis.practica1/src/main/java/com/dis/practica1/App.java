@@ -39,7 +39,9 @@ public class App {
 			Element productos = doc.createElement("Productos");            
 			Element clientes = doc.createElement("Clientes");            			
 			Element pedidos = doc.createElement("Pedidos");            
-					
+			
+			java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));		
+			int menu;
 			int option = -1;    
 			int option2 = 0;
 			int flag1=0; 
@@ -50,70 +52,77 @@ public class App {
 			Node producto;
 			Node cliente;
 			Node pedido;
-			java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-
-			while (option != 0) {
-                clear();
-                menu();
-                
-                option = Integer.parseInt(in.readLine());
-                
-                switch(option) {
-                    case 1:
-                        clear();
-                        if(flag1==0) {
-                        	rootElement.appendChild(productos);
-                        	flag1++;
-                        }
-                        producto = productoSubMenu(doc, codigo2);
-                        productos.appendChild(producto);
-                        
-                        break;
-                    case 2:
-                        clear();
-                        if(flag2==0) {
-                        	rootElement.appendChild(clientes);
-                        	flag2++;
-                        }
-                        cliente = clienteSubMenu(doc,codigo2);
-                        clientes.appendChild(cliente);
-                        
-                        break;
-                    case 3:
-                        clear();
-                        if(flag3==0) {
-                        	rootElement.appendChild(pedidos);
-                        	flag3++;
-                        }
-                        pedido = pedidoSubMenu(doc,codigo2);
-                        pedidos.appendChild(pedido);
-                        
-                        break;
-                   
-                    case 4:
-                    	clear();
-                    	System.out.println("1.- Editar Producto");
-                        System.out.println("2.- Editar Cliente");
-                        System.out.println("3.- Editar Pedido");
-                        System.out.println("Opcion:");
-                        option2 = Integer.parseInt(in.readLine());
-                        
-                        System.out.println("Codigo o Id del elemento a modificar:");
-                        codigo = in.readLine();
-                                                
-                        Node nuevo = updateElement(doc, option2, codigo);
-                        if(option2 == 1 && nuevo!=null) {
-                        	productos.appendChild(nuevo);
-                        }
-                        else if (option2 == 2 && nuevo!=null) {
-                        	clientes.appendChild(nuevo);
-                        }
-                        else if (option2 == 3 && nuevo!=null) {
-                        	pedidos.appendChild(nuevo);
-                        }
-                    	break;
-				}
+			
+			menuPrincipal();
+			menu = Integer.parseInt(in.readLine());
+			if(menu == 1) {
+				
 			}
+			if(menu == 2) {
+
+				while (option != 0) {
+	                clear();
+	                menu();
+	                
+	                option = Integer.parseInt(in.readLine());
+	                
+	                switch(option) {
+	                    case 1:
+	                        clear();
+	                        if(flag1==0) {
+	                        	rootElement.appendChild(productos);
+	                        	flag1++;
+	                        }
+	                        producto = productoSubMenu(doc, codigo2);
+	                        productos.appendChild(producto);
+	                        
+	                        break;
+	                    case 2:
+	                        clear();
+	                        if(flag2==0) {
+	                        	rootElement.appendChild(clientes);
+	                        	flag2++;
+	                        }
+	                        cliente = clienteSubMenu(doc,codigo2);
+	                        clientes.appendChild(cliente);
+	                        
+	                        break;
+	                    case 3:
+	                        clear();
+	                        if(flag3==0) {
+	                        	rootElement.appendChild(pedidos);
+	                        	flag3++;
+	                        }
+	                        pedido = pedidoSubMenu(doc,codigo2);
+	                        pedidos.appendChild(pedido);
+	                        
+	                        break;
+	                   
+	                    case 4:
+	                    	clear();
+	                    	System.out.println("1.- Editar Producto");
+	                        System.out.println("2.- Editar Cliente");
+	                        System.out.println("3.- Editar Pedido");
+	                        System.out.println("Opcion:");
+	                        option2 = Integer.parseInt(in.readLine());
+	                        
+	                        System.out.println("Codigo o Id del elemento a modificar:");
+	                        codigo = in.readLine();
+	                                                
+	                        Node nuevo = updateElement(doc, option2, codigo);
+	                        if(option2 == 1 && nuevo!=null) {
+	                        	productos.appendChild(nuevo);
+	                        }
+	                        else if (option2 == 2 && nuevo!=null) {
+	                        	clientes.appendChild(nuevo);
+	                        }
+	                        else if (option2 == 3 && nuevo!=null) {
+	                        	pedidos.appendChild(nuevo);
+	                        }
+	                    	break;
+					}
+				}
+			
 
 			// Necesario para generar el output
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -139,11 +148,12 @@ public class App {
 			// mostramos la informacion por pantalla y al archivo
 			transformer.transform(source, console);
 			transformer.transform(source, file);
-
+			}
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public static Node updateElement(Document doc, int option, String codigo) throws IOException, InterruptedException {
@@ -539,7 +549,15 @@ public class App {
 		System.out.println("2.- Introducir Cliente");
 		System.out.println("3.- Introducir Pedido");
 		System.out.println("4.- Editar Elemento");
-		System.out.println("5.- Cargar documento");
+		System.out.println("0.- Salir");
+
+		System.out.println("\nOpcion:");
+	}
+	
+	public static void menuPrincipal() {
+		System.out.println("**************************");
+		System.out.println("1.- Continuar con XML");
+		System.out.println("2.- Crear nuevo XML");
 		System.out.println("0.- Salir");
 
 		System.out.println("\nOpcion:");
