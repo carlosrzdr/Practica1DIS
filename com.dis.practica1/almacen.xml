@@ -1,17 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE Almacen SYSTEM "Almacen.dtd">
 <Almacen>
-          <Productos>
-                    <Producto Codigo="dsf">
-                              <Nombre>dg</Nombre>
-                              <Descripcion>rg</Descripcion>
-                              <Stock>rg</Stock>
-                              <Pendientes>e</Pendientes>
-                              <Localizacion>
-                                        <Pasillo>rg</Pasillo>
-                                        <Estanteria/>
-                                        <Estante>er</Estante>
-                              </Localizacion>
-                    </Producto>
-          </Productos>
+          <Clientes>
+                    <Cliente Id="780">
+                              <Nombre>Param</Nombre>
+                              <Apellidos>Montejano</Apellidos>
+                              <Email>param@ montejano.com</Email>
+                              <Telefono>657689031</Telefono>
+                              <Direccion>
+                                        <Calle>Imperial</Calle>
+                                        <Numero>35</Numero>
+                                        <CodigoPostal>29054</CodigoPostal>
+                                        <Poblacion>Madrid</Poblacion>
+                                        <Pais>Portugal</Pais>
+                              </Direccion>
+                    </Cliente>
+                    <Cliente Id="xxx">
+                              <Nombre>Juan</Nombre>
+                              <Apellidos>Barreda</Apellidos>
+                              <Email>calenton@hotmail.com</Email>
+                              <Telefono>6785683241</Telefono>
+                              <Direccion>
+                                        <Calle>Esperanxzqa</Calle>
+                                        <Numero>5</Numero>
+                                        <CodigoPostal>56746</CodigoPostal>
+                                        <Poblacion>Madrid</Poblacion>
+                                        <Pais>Portugal</Pais>
+                              </Direccion>
+                    </Cliente>
+          </Clientes>
+          <Pedidos>
+                    <Pedido Id="486">
+                              <Producto Código="Portugal">
+                                        <Info>465</Info>
+                                        <Cantidad>Pack teteras</Cantidad>
+                              </Producto>
+                              <Destinatario>4</Destinatario>
+                              <Fecha>Param</Fecha>
+                              <Direccion>
+                                        <Calle>domingo</Calle>
+                                        <Numero>Imperial</Numero>
+                                        <CodigoPostal>35</CodigoPostal>
+                                        <Poblacion>29054</Poblacion>
+                                        <Pais>Madrid</Pais>
+                              </Direccion>
+                    </Pedido>
+          </Pedidos>
 </Almacen>

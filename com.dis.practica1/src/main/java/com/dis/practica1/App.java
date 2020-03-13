@@ -18,6 +18,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.DocumentType;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class App {
 	public static void main(String[] args) {
@@ -87,9 +88,12 @@ public class App {
                         
                         break;                        
                     case 4:
-                    	String filePath = "prueba.xml";
+                    	String filePath = "almacen.xml";
         				File xmlFile = new File(filePath);
         				doc = dBuilder.parse(xmlFile);        				
+                    	break;
+                    case 5:
+                    	addClient( doc, "Juan" , "Barreda" , "calenton@hotmail.com", "6785683241", "Esperanxzqa", "5", "56746", "Madrid", "Portugal", "xxx");
                     	break;
                     	
 				}
@@ -351,7 +355,93 @@ public class App {
         node.appendChild(doc.createTextNode(value));
         return node;
     }
+    
+    
+    private static void addProducto(Document doc, String codigo, String nombre , String descripcion, String stock, String pendientes, String pasillo, String estanteria, String estante) {
+    	Element prod = null;
+    	NodeList productos = doc.getElementsByTagName("Productos");
+    	
+    	for (int i = 0; i < productos.getLength(); i++) {
+            prod = (Element) productos.item(i);
+            
+            Element producto = doc.createElement("Producto");
+            Element localizacion = doc.createElement("Localizacion");
+            
+            prod.appendChild(producto);
+            producto.setAttribute("Codigo", codigo);
+            //Valores de producto
+            producto.appendChild(createElements(doc, producto,"Nombre", nombre));
+            producto.appendChild(createElements(doc, producto,"Descripción", descripcion));
+            producto.appendChild(createElements(doc, producto,"Stock", stock));
+            producto.appendChild(createElements(doc, producto,"Pendientes", stock));
+            //Valores de localización
+            producto.appendChild(localizacion);
+            localizacion.appendChild(createElements(doc, localizacion, "Pasillo", pasillo));
+            localizacion.appendChild(createElements(doc, localizacion, "Estanteria", estanteria));
+            localizacion.appendChild(createElements(doc, localizacion, "Estante", estante));                        
+        }
+    }
+    
+    
+    private static void addClient(Document doc, String nombre , String apellidos , String email, String telefono, String calle, String numero, String codigop, String poblacion, String pais, String codigo) {
+    	Element client =  null;        
+        NodeList clientes = doc.getElementsByTagName("Clientes");
+        
+        for(int i = 0; i < clientes.getLength(); i++) {
+        	client = (Element) clientes.item(i);
+        	
+        	Element cliente = doc.createElement("Cliente");
+            Element direccion = doc.createElement("Direccion");
+            
+            client.appendChild(cliente);           
+            cliente.setAttribute("Id", /*codigo*/ "xxx");
+            //Valores cliente
+            cliente.appendChild(createElements(doc, cliente, "Nombre", nombre));		       
+            cliente.appendChild(createElements(doc, cliente, "Apellidos", apellidos));		        
+            cliente.appendChild(createElements(doc, cliente, "Email", email));		        
+            cliente.appendChild(createElements(doc, cliente, "Telefono", telefono));
+            //Valores dirección
+            cliente.appendChild(direccion);
+            direccion.appendChild(createElements(doc, direccion, "Calle", calle));
+            direccion.appendChild(createElements(doc, direccion, "Numero", numero));
+            direccion.appendChild(createElements(doc, direccion, "CodigoPostal", codigop));
+            direccion.appendChild(createElements(doc, direccion, "Poblacion", poblacion));
+            direccion.appendChild(createElements(doc, direccion, "Pais", pais));            
+        }
+    }
+    
 
+    private static void addPedido(Document doc, String nombreproducto , String cantidad , String destinatario, String fecha, String calle, String numero, String codigop, String poblacion, String pais, String codigo, String id) {
+    	Element ped = null;
+    	NodeList pedidos = doc.getElementsByTagName("Pedidos");
+    	
+    	for(int i = 0; i < pedidos.getLength(); i ++) {
+    		ped = (Element) pedidos.item(i);
+    		
+    		Element pedido = doc.createElement("Pedido");
+            Element direccion = doc.createElement("DireccionPedido");
+            Element producto = doc.createElement("ProductoPedido");
+            
+            pedido.setAttribute("Id", id);
+            producto.setAttribute("Código", codigo);
+            //Valores producto
+            pedido.appendChild(producto);
+            producto.appendChild(createElements(doc, pedido, "Info", nombreproducto));
+            producto.appendChild(createElements(doc, pedido, "Cantidad", cantidad));
+            
+            pedido.appendChild(createElements(doc, pedido, "Destinatario", destinatario));		       
+            pedido.appendChild(createElements(doc, pedido, "Fecha", fecha));
+            //Valores dirección
+            pedido.appendChild(direccion);
+            direccion.appendChild(createElements(doc, direccion, "CallePedido", calle));
+            direccion.appendChild(createElements(doc, direccion, "NumeroPedido", numero));
+            direccion.appendChild(createElements(doc, direccion, "CodigoPostalPedido", codigop));
+            direccion.appendChild(createElements(doc, direccion, "PoblacionPedido", poblacion));
+            direccion.appendChild(createElements(doc, direccion, "PaisPedido", pais));
+    	}
+    }
+    
+    
     public static void clear() {
         System.out.print("\033[2J");
         System.out.flush();
