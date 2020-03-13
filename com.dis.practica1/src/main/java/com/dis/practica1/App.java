@@ -18,6 +18,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.DocumentType;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class App {
 	public static void main(String[] args) {
@@ -41,9 +42,12 @@ public class App {
 			
 		
 			int option = -1;    
+			int option2 = 0;
 			int flag1=0; 
 			int flag2=0; 
-			int flag3=0;    
+			int flag3=0;
+			String codigo ="0";
+			String codigo2 ="0";
 			Node producto;
 			Node cliente;
 			Node pedido;
@@ -62,7 +66,7 @@ public class App {
                         	rootElement.appendChild(productos);
                         	flag1++;
                         }
-                        producto = productoSubMenu(doc);
+                        producto = productoSubMenu(doc, codigo2);
                         productos.appendChild(producto);
                         
                         break;
@@ -72,7 +76,7 @@ public class App {
                         	rootElement.appendChild(clientes);
                         	flag2++;
                         }
-                        cliente = clienteSubMenu(doc);
+                        cliente = clienteSubMenu(doc,codigo2);
                         clientes.appendChild(cliente);
                         
                         break;
@@ -82,10 +86,33 @@ public class App {
                         	rootElement.appendChild(pedidos);
                         	flag3++;
                         }
-                        pedido = pedidoSubMenu(doc);
+                        pedido = pedidoSubMenu(doc,codigo2);
                         pedidos.appendChild(pedido);
                         
                         break;
+                   
+                    case 4:
+                    	clear();
+                    	System.out.println("1.- Editar Producto");
+                        System.out.println("2.- Editar Cliente");
+                        System.out.println("3.- Editar Pedido");
+                        System.out.println("Opcion:");
+                        option2 = Integer.parseInt(in.readLine());
+                        
+                        System.out.println("Codigo o Id del elemento a modificar:");
+                        codigo = in.readLine();
+                                                
+                        Node nuevo = updateElement(doc, option2, codigo);
+                        if(option2 == 1 && nuevo!=null) {
+                        	productos.appendChild(nuevo);
+                        }
+                        else if (option2 == 2 && nuevo!=null) {
+                        	clientes.appendChild(nuevo);
+                        }
+                        else if (option2 == 3 && nuevo!=null) {
+                        	pedidos.appendChild(nuevo);
+                        }
+                    	break;
 				}
 			}
 		
@@ -120,15 +147,82 @@ public class App {
 		}
 	}
 	
-	public static void doc(int n) {
+	public static Node updateElement(Document doc, int option, String codigo) throws IOException {
+		switch (option) {
+		case 1:
+			NodeList productos = doc.getElementsByTagName("Producto");
+			Element producto = null;
+			
+			for (int i = 0; i < productos.getLength(); i++) {
+	            producto = (Element) productos.item(i);
+	            String id = producto.getAttribute("Codigo");
+            	
+	            
+	            if(id.equals(codigo)) {
+	            	producto.getParentNode().removeChild(producto);
+	            	Node nuevo = productoSubMenu(doc, codigo);
+	            	
+	            	return nuevo;
+	            }
+	            
+	        }
+			System.out.println("El Codigo introducido no corresponde con ningun producto\n\n");
+        	
+        	return null;
+			
+		case 2:
+			NodeList clientes = doc.getElementsByTagName("Cliente");
+			Element cliente = null;
+			
+			for (int i = 0; i < clientes.getLength(); i++) {
+	            cliente = (Element) clientes.item(i);
+	            String id = cliente.getAttribute("Id");
+            	
+	            
+	            if(id.equals(codigo)) {
+	            	cliente.getParentNode().removeChild(cliente);
+	            	Node nuevo = productoSubMenu(doc, codigo);
+	            	
+	            	return nuevo;
+	            }
+	            else {
+	            	System.out.println("El Id introducido no corresponde con ningun cliente\n\n");
+	            	
+	            	return null;
+	               	
+	            }	
+	        }
+			break;
+		case 3:
+			NodeList pedidos = doc.getElementsByTagName("Pedido");
+			Element pedido = null;
+			
+			for (int i = 0; i < pedidos.getLength(); i++) {
+	            pedido = (Element) pedidos.item(i);
+	            String id = pedido.getAttribute("Id");
+            	
+	            
+	            if(id.equals(codigo)) {
+	            	pedido.getParentNode().removeChild(pedido);
+	            	Node nuevo = productoSubMenu(doc, codigo);
+	            	
+	            	return nuevo;
+	            }
+	            else {
+	            	System.out.println("El Id introducido no corresponde con ningun pedido\n\n");
+	            	
+	            	return null;
+	               	
+	            }	
+	        }
+			break;
+		}
+		return null;
 		
- 
-
-        
-	}
+		
+    }
 	
-	public static Node productoSubMenu(Document prod) throws IOException{
-		String codigo;
+	public static Node productoSubMenu(Document prod, String codigo) throws IOException{
         String nombre;
         String descripcion;
         String stock;
@@ -139,8 +233,10 @@ public class App {
         java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("Producto ->");
-        System.out.print("Codigo:");
-        codigo = in.readLine();
+        if(codigo == "0") {
+	        System.out.print("Codigo:");
+	        codigo = in.readLine();
+        }
         
 		System.out.print("Nombre:");
         nombre = in.readLine();
@@ -167,7 +263,7 @@ public class App {
 		return (createProdElement(prod, codigo, nombre, descripcion, stock, pendientes, pasillo, estanteria, estante));
 	}
 	
-	public static Node clienteSubMenu(Document prod) throws IOException {
+	public static Node clienteSubMenu(Document prod, String codigo) throws IOException {
         String nombre;
         String apellidos;
         String email; 
@@ -177,7 +273,6 @@ public class App {
         String codigop; 
         String poblacion;
         String pais;
-        String codigo;
         java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         
 		System.out.println("Cliente ->");
@@ -187,8 +282,10 @@ public class App {
 		System.out.print("Apellidos:");
         apellidos = in.readLine();
         
-        System.out.print("ID:");
-        codigo = in.readLine();
+        if(codigo == "0") {
+        	System.out.print("ID:");
+            codigo = in.readLine();
+        }
         
 		System.out.print("Email:");
         email = in.readLine();
@@ -215,9 +312,9 @@ public class App {
 		return (createClienElement(prod, nombre, apellidos, email, telefono, calle, numero, codigop, poblacion, pais, codigo));
 	}
 	
-	public static Node pedidoSubMenu(Document prod) throws IOException {
+	public static Node pedidoSubMenu(Document prod, String codigo) throws IOException {
         String infoproducto;
-        String codigo;
+        
         String cantidad; 
         String destinatario;
         String fecha;
@@ -234,8 +331,11 @@ public class App {
         id = in.readLine();
         
         System.out.println("\tProducto ->");
-        System.out.print("\n\t\tCodigo:");
-        codigo = in.readLine();
+        
+        if(codigo == "0") {
+        	System.out.print("\n\t\tCodigo:");
+            codigo = in.readLine();
+        }
         
         System.out.print("\t\tInfo:");
         infoproducto = in.readLine();
@@ -355,6 +455,7 @@ public class App {
         System.out.println("1.- Introducir Producto");
         System.out.println("2.- Introducir Cliente");
         System.out.println("3.- Introducir Pedido");
+        System.out.println("4.- Editar Elemento");
         System.out.println("0.- Salir");
 
         System.out.println("\nOpcion:");
