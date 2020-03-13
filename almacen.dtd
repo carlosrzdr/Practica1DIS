@@ -3,45 +3,46 @@
 <!ELEMENT Almacen (Productos,Clientes,Pedidos)>
 
 <!ELEMENT Productos (Producto+)>
-<!ELEMENT Producto (Nombre,Descripción, Stock, Pendientes, Localización)>
+<!ELEMENT Producto (Nombre,Descripcion, Stock, Pendientes, Localizacion)>
 <!ELEMENT Nombre (#PCDATA)>
-<!ELEMENT Descripción (#PCDATA)>
+<!ELEMENT Descripcion (#PCDATA)>
 <!ELEMENT Stock (#PCDATA)>
 <!ELEMENT Pendientes (#PCDATA)>
-<!ELEMENT Localización (Pasillo, Estantería, Estante)>
+<!ELEMENT Localizacion (Pasillo, Estanteria, Estante)>
 <!ELEMENT Pasillo (#PCDATA)>
-<!ELEMENT Estantería (#PCDATA)>
+<!ELEMENT Estanteria (#PCDATA)>
 <!ELEMENT Estante (#PCDATA)>
 
 <!ELEMENT Clientes (Cliente*)>
-<!ELEMENT Cliente (Nombre, Apellidos, Email, Telefono, Dirección)>
+<!ELEMENT Cliente (Nombre, Apellidos, Email, Telefono, Direccion)>
 <!ELEMENT Nombre (#PCDATA)>
 <!ELEMENT Apellidos (#PCDATA)>
 <!ELEMENT Email (#PCDATA)>
 <!ELEMENT Telefono (#PCDATA)>
-<!ELEMENT Dirección (Calle, Número, CódigoPostal, Población, País)>
+<!ELEMENT Direccion (Calle, Numero, CodigoPostal, Poblacion, Pais)>
 <!ELEMENT Calle (#PCDATA)>
-<!ELEMENT Número (#PCDATA)>
-<!ELEMENT CódigoPostal (#PCDATA)>
-<!ELEMENT Población (#PCDATA)>
-<!ELEMENT País (#PCDATA)>
+<!ELEMENT Numero (#PCDATA)>
+<!ELEMENT CodigoPostal (#PCDATA)>
+<!ELEMENT Poblacion (#PCDATA)>
+<!ELEMENT Pais (#PCDATA)>
 
 <!ELEMENT Pedidos (Pedido*)>
-<!ELEMENT Pedido (Productos, Destinatario, Fecha, Dirección)>
+<!ELEMENT Pedido (Productos, Destinatario, Fecha, Direccion)>
 <!ELEMENT Productos (Producto+)>
-<!ELEMENT Producto (Cantidad)>
+<!ELEMENT Producto (Info, Cantidad)>
 <!ELEMENT Cantidad (#PCDATA)>
+<!ELEMENT Info (#PCDATA)>
 <!ELEMENT Destinatario (#PCDATA)>
 <!ELEMENT Fecha (#PCDATA)>
-<!ELEMENT Dirección (Calle, Número, CódigoPostal, Población, País)>
+<!ELEMENT Direccion (Calle, Numero, CodigoPostal, Poblacion, Pais)>
 <!ELEMENT Calle (#PCDATA)>
-<!ELEMENT Número (#PCDATA)>
-<!ELEMENT CódigoPostal (#PCDATA)>
-<!ELEMENT Población (#PCDATA)>
-<!ELEMENT País (#PCDATA)>
+<!ELEMENT Numero (#PCDATA)>
+<!ELEMENT CodigoPostal (#PCDATA)>
+<!ELEMENT Poblacion (#PCDATA)>
+<!ELEMENT Pais (#PCDATA)>
 
-<!ATTLIST Producto Código ID #REQUIRED>
-<!ATTLIST Cliente Código ID #REQUIRED>
-<!ATTLIST Pedido Código ID #REQUIRED>
+<!ATTLIST Producto Codigo ID #REQUIRED>
+<!ATTLIST Cliente Id ID #REQUIRED>
+<!ATTLIST Pedido Id ID #REQUIRED>
 
 ]>
