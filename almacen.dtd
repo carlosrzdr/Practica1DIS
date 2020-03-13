@@ -1,10 +1,9 @@
-<!DOCTYPE Almacen
-[
+<!DOCTYPE Almacen [
 <!ELEMENT Almacen (Productos,Clientes,Pedidos)>
 
 <!ELEMENT Productos (Producto+)>
-<!ELEMENT Producto (Nombre,Descripcion, Stock, Pendientes, Localizacion)>
-<!ELEMENT Nombre (#PCDATA)>
+<!ELEMENT Producto (NombreProducto, Descripcion, Stock, Pendientes, Localizacion)>
+<!ELEMENT NombreProducto (#PCDATA)>
 <!ELEMENT Descripcion (#PCDATA)>
 <!ELEMENT Stock (#PCDATA)>
 <!ELEMENT Pendientes (#PCDATA)>
@@ -27,22 +26,22 @@
 <!ELEMENT Pais (#PCDATA)>
 
 <!ELEMENT Pedidos (Pedido*)>
-<!ELEMENT Pedido (Productos, Destinatario, Fecha, Direccion)>
-<!ELEMENT Productos (Producto+)>
-<!ELEMENT Producto (Info, Cantidad)>
+<!ELEMENT Pedido (ProductoPedido, Destinatario, Fecha, DireccionPedido)>
+<!ELEMENT ProductoPedido (Info, Cantidad)>
 <!ELEMENT Cantidad (#PCDATA)>
 <!ELEMENT Info (#PCDATA)>
 <!ELEMENT Destinatario (#PCDATA)>
 <!ELEMENT Fecha (#PCDATA)>
-<!ELEMENT Direccion (Calle, Numero, CodigoPostal, Poblacion, Pais)>
-<!ELEMENT Calle (#PCDATA)>
-<!ELEMENT Numero (#PCDATA)>
-<!ELEMENT CodigoPostal (#PCDATA)>
-<!ELEMENT Poblacion (#PCDATA)>
-<!ELEMENT Pais (#PCDATA)>
+<!ELEMENT DireccionPedido (CallePedido, NumeroPedido, CodigoPostalPedido, PoblacionPedido, PaisPedido)>
+<!ELEMENT CallePedido (#PCDATA)>
+<!ELEMENT NumeroPedido (#PCDATA)>
+<!ELEMENT CodigoPostalPedido (#PCDATA)>
+<!ELEMENT PoblacionPedido (#PCDATA)>
+<!ELEMENT PaisPedido (#PCDATA)>
 
-<!ATTLIST Producto Codigo ID #REQUIRED>
-<!ATTLIST Cliente Id ID #REQUIRED>
-<!ATTLIST Pedido Id ID #REQUIRED>
+<!ATTLIST Producto Codigo CDATA #REQUIRED>
+<!ATTLIST ProductoPedido Codigo CDATA #REQUIRED>
+<!ATTLIST Cliente Id CDATA #REQUIRED>
+<!ATTLIST Pedido Id CDATA #REQUIRED>
 
 ]>
