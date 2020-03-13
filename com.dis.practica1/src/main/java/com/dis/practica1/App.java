@@ -39,7 +39,7 @@ public class App {
 			Element productos = doc.createElement("Productos");            
 			Element clientes = doc.createElement("Clientes");            			
 			Element pedidos = doc.createElement("Pedidos");            
-			
+
 			java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));		
 			int menu;
 			int option = -1;    
@@ -52,77 +52,126 @@ public class App {
 			Node producto;
 			Node cliente;
 			Node pedido;
-			
+
 			menuPrincipal();
 			menu = Integer.parseInt(in.readLine());
 			if(menu == 1) {
-				
+				//Leemos el documento xml				
+				String filePath = "almacen.xml";
+				File xmlFile = new File(filePath);
+				doc = dBuilder.parse(xmlFile);
+				//Funciones para trabajar con el xml		        
+				while(option != 0) {
+					clear();
+					menu();
+
+					option = Integer.parseInt(in.readLine());
+
+					switch(option) {
+					case 1:
+						clear();
+						valoresProducto(doc, codigo2);
+						break;
+					case 2:
+						valoresCliente(doc, codigo2);
+						break;
+					case 3:
+						valoresPedido(doc, codigo2);
+						break;
+					case 4:
+						clear();
+						System.out.println("1.- Editar Producto");
+						System.out.println("2.- Editar Cliente");
+						System.out.println("3.- Editar Pedido");
+						System.out.println("Opcion:");
+						option2 = Integer.parseInt(in.readLine());
+
+						System.out.println("Codigo o Id del elemento a modificar:");
+						codigo = in.readLine();
+
+
+						if(option2 == 1) {
+							eliminarElemAlmacen(doc,  "Productos", "Producto", "Codigo", codigo);
+							valoresProducto(doc, codigo2);
+						}
+						else if (option2 == 2) {
+							eliminarElemAlmacen(doc,  "Clientes", "Cliente", "Id", codigo);
+							valoresCliente(doc, codigo2);
+						}
+						else if (option2 == 3) {
+							eliminarElemAlmacen(doc,  "Pedidos", "Pedido", "Id", codigo);
+							valoresPedido(doc, codigo2);
+						}
+						break;						
+					}
+				}				
 			}
 			if(menu == 2) {
 
 				while (option != 0) {
-	                clear();
-	                menu();
-	                
-	                option = Integer.parseInt(in.readLine());
-	                
-	                switch(option) {
-	                    case 1:
-	                        clear();
-	                        if(flag1==0) {
-	                        	rootElement.appendChild(productos);
-	                        	flag1++;
-	                        }
-	                        producto = productoSubMenu(doc, codigo2);
-	                        productos.appendChild(producto);
-	                        
-	                        break;
-	                    case 2:
-	                        clear();
-	                        if(flag2==0) {
-	                        	rootElement.appendChild(clientes);
-	                        	flag2++;
-	                        }
-	                        cliente = clienteSubMenu(doc,codigo2);
-	                        clientes.appendChild(cliente);
-	                        
-	                        break;
-	                    case 3:
-	                        clear();
-	                        if(flag3==0) {
-	                        	rootElement.appendChild(pedidos);
-	                        	flag3++;
-	                        }
-	                        pedido = pedidoSubMenu(doc,codigo2);
-	                        pedidos.appendChild(pedido);
-	                        
-	                        break;
-	                   
-	                    case 4:
-	                    	clear();
-	                    	System.out.println("1.- Editar Producto");
-	                        System.out.println("2.- Editar Cliente");
-	                        System.out.println("3.- Editar Pedido");
-	                        System.out.println("Opcion:");
-	                        option2 = Integer.parseInt(in.readLine());
-	                        
-	                        System.out.println("Codigo o Id del elemento a modificar:");
-	                        codigo = in.readLine();
-	                                                
-	                        Node nuevo = updateElement(doc, option2, codigo);
-	                        if(option2 == 1 && nuevo!=null) {
-	                        	productos.appendChild(nuevo);
-	                        }
-	                        else if (option2 == 2 && nuevo!=null) {
-	                        	clientes.appendChild(nuevo);
-	                        }
-	                        else if (option2 == 3 && nuevo!=null) {
-	                        	pedidos.appendChild(nuevo);
-	                        }
-	                    	break;
+					clear();
+					menu();
+
+					option = Integer.parseInt(in.readLine());
+
+					switch(option) {
+					case 1:
+						clear();
+						if(flag1==0) {
+							rootElement.appendChild(productos);
+							flag1++;
+						}
+						producto = productoSubMenu(doc, codigo2);
+						productos.appendChild(producto);
+
+						break;
+					case 2:
+						clear();
+						if(flag2==0) {
+							rootElement.appendChild(clientes);
+							flag2++;
+						}
+						cliente = clienteSubMenu(doc,codigo2);
+						clientes.appendChild(cliente);
+
+						break;
+					case 3:
+						clear();
+						if(flag3==0) {
+							rootElement.appendChild(pedidos);
+							flag3++;
+						}
+						pedido = pedidoSubMenu(doc,codigo2);
+						pedidos.appendChild(pedido);
+
+						break;
+
+					case 4:
+						clear();
+						System.out.println("1.- Editar Producto");
+						System.out.println("2.- Editar Cliente");
+						System.out.println("3.- Editar Pedido");
+						System.out.println("Opcion:");
+						option2 = Integer.parseInt(in.readLine());
+
+						System.out.println("Codigo o Id del elemento a modificar:");
+						codigo = in.readLine();
+
+						Node nuevo = updateElement(doc, option2, codigo);
+						if(option2 == 1 && nuevo!=null) {
+							productos.appendChild(nuevo);
+						}
+						else if (option2 == 2 && nuevo!=null) {
+							clientes.appendChild(nuevo);
+						}
+						else if (option2 == 3 && nuevo!=null) {
+							pedidos.appendChild(nuevo);
+						}
+						break;
 					}
 				}
-			
+
+			}
 
 			// Necesario para generar el output
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -132,12 +181,12 @@ public class App {
 			transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
 			transformer.setOutputProperty(OutputKeys.METHOD, "xml");
 			DOMImplementation domImpl = doc.getImplementation();
-			DocumentType doctype = domImpl.createDocumentType("doctype",
-					"PracticaDis",
-					"Almacen.dtd");
+			/*DocumentType doctype = domImpl.createDocumentType("doctype",
+						"PracticaDis",
+						"Almacen.dtd");*/
 			// Hacemos la tabulacion necesaria para el xml
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, doctype.getSystemId());
+			//transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, doctype.getSystemId());
 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "10");
 			DOMSource source = new DOMSource(doc);
 
@@ -148,14 +197,14 @@ public class App {
 			// mostramos la informacion por pantalla y al archivo
 			transformer.transform(source, console);
 			transformer.transform(source, file);
-			}
+
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public static Node updateElement(Document doc, int option, String codigo) throws IOException, InterruptedException {
 		java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		Node nuevo = null;
@@ -164,88 +213,88 @@ public class App {
 		case 1:
 			NodeList productos = doc.getElementsByTagName("Producto");
 			Element producto = null;
-			
+
 
 			for (int i = 0; i < productos.getLength(); i++) {
-	            producto = (Element) productos.item(i);
-	            String id = producto.getAttribute("Codigo");
-            	
-	            
-	            if(id.equals(codigo)) {
-	            	producto.getParentNode().removeChild(producto);
-	            	nuevo = productoSubMenu(doc, codigo);
-	            	flag++;
-	            }
-	            
-	        }
+				producto = (Element) productos.item(i);
+				String id = producto.getAttribute("Codigo");
+
+
+				if(id.equals(codigo)) {
+					producto.getParentNode().removeChild(producto);
+					nuevo = productoSubMenu(doc, codigo);
+					flag++;
+				}
+
+			}
 			if(flag == 0) {
 				System.out.println("El Codigo introducido no corresponde con ningun producto\n\n");
 				in.readLine();
 			}
-        	break;
-			
+			break;
+
 		case 2:
 			NodeList clientes = doc.getElementsByTagName("Cliente");
 			Element cliente = null;
-			
+
 			for (int i = 0; i < clientes.getLength(); i++) {
-	            cliente = (Element) clientes.item(i);
-	            String id = cliente.getAttribute("Id");
-            	
-	            
-	            if(id.equals(codigo)) {
-	            	cliente.getParentNode().removeChild(cliente);
-	            	nuevo = productoSubMenu(doc, codigo);
-	            	flag ++;
-	            }
+				cliente = (Element) clientes.item(i);
+				String id = cliente.getAttribute("Id");
+
+
+				if(id.equals(codigo)) {
+					cliente.getParentNode().removeChild(cliente);
+					nuevo = productoSubMenu(doc, codigo);
+					flag ++;
+				}
 			}
 			if(flag == 0) {
-		        System.out.println("El Codigo introducido no corresponde con ningun cliente\n\n");
-		        in.readLine();
+				System.out.println("El Codigo introducido no corresponde con ningun cliente\n\n");
+				in.readLine();
 			}
-	        break;
-	       
+			break;
+
 		case 3:
 			NodeList pedidos = doc.getElementsByTagName("Pedido");
 			Element pedido = null;
-			
+
 			for (int i = 0; i < pedidos.getLength(); i++) {
-	            pedido = (Element) pedidos.item(i);
-	            String id = pedido.getAttribute("Id");
-            	
-	            if(id.equals(codigo)) {
-	            	pedido.getParentNode().removeChild(pedido);
-	            	nuevo = productoSubMenu(doc, codigo);
-	            	flag++;
-	            }
-	            
-	        }
+				pedido = (Element) pedidos.item(i);
+				String id = pedido.getAttribute("Id");
+
+				if(id.equals(codigo)) {
+					pedido.getParentNode().removeChild(pedido);
+					nuevo = productoSubMenu(doc, codigo);
+					flag++;
+				}
+
+			}
 			if(flag == 0) {
 				System.out.println("El Codigo introducido no corresponde con ningun \n\n");
 				in.readLine();
 			}
 			break;
-			
+
 		}
 		return nuevo;
-    }
-	
-	public static Node productoSubMenu(Document prod, String codigo) throws IOException{
-        String nombre;
-        String descripcion;
-        String stock;
-        String pendientes;
-        String pasillo;
-        String estanteria;
-        String estante;
-        java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+	}
 
-        System.out.println("Producto ->");
-        if(codigo == null) {
-	        System.out.print("Codigo:");
-	        codigo = in.readLine();
-        }
-        
+	public static Node productoSubMenu(Document prod, String codigo) throws IOException{
+		String nombre;
+		String descripcion;
+		String stock;
+		String pendientes;
+		String pasillo;
+		String estanteria;
+		String estante;
+		java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.println("Producto ->");
+		if(codigo == null) {
+			System.out.print("Codigo:");
+			codigo = in.readLine();
+		}
+
 		System.out.print("Nombre:");
 		nombre = in.readLine();
 
@@ -270,31 +319,31 @@ public class App {
 
 		return (createProdElement(prod, codigo, nombre, descripcion, stock, pendientes, pasillo, estanteria, estante));
 	}
-	
+
 	public static Node clienteSubMenu(Document prod, String codigo) throws IOException {
-        String nombre;
-        String apellidos;
-        String email; 
-        String telefono;
-        String calle; 
-        String numero; 
-        String codigop; 
-        String poblacion;
-        String pais;
-        java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        
+		String nombre;
+		String apellidos;
+		String email; 
+		String telefono;
+		String calle; 
+		String numero; 
+		String codigop; 
+		String poblacion;
+		String pais;
+		java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
 		System.out.println("Cliente ->");
 		System.out.print("Nombre:");
 		nombre = in.readLine();
 
 		System.out.print("Apellidos:");
-        apellidos = in.readLine();
-        
-        if(codigo == null) {
-        	System.out.print("ID:");
-            codigo = in.readLine();
-        }
-        
+		apellidos = in.readLine();
+
+		if(codigo == null) {
+			System.out.print("ID:");
+			codigo = in.readLine();
+		}
+
 		System.out.print("Email:");
 		email = in.readLine();
 
@@ -453,9 +502,56 @@ public class App {
 	}
 
 
+	private static void valoresProducto(Document doc, String codigo) throws IOException {
+		String nombre;
+		String descripcion;
+		String stock;
+		String pendientes;
+		String pasillo;
+		String estanteria;
+		String estante;
+		java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.println("Producto ->");
+		if(codigo == null) {
+			System.out.print("Codigo:");
+			codigo = in.readLine();
+		}
+
+		System.out.print("Nombre:");
+		nombre = in.readLine();
+
+		System.out.print("Descripcion:");
+		descripcion = in.readLine();
+
+		System.out.print("Stock:");
+		stock = in.readLine();
+
+		System.out.println("\nLocalizacion ->");
+		System.out.print("\tPasillo:");
+		pasillo = in.readLine();
+
+		System.out.print("\tEstanteria:");
+		estanteria = in.readLine();
+
+		System.out.print("\tEstante:");
+		estante = in.readLine();
+
+		System.out.print("Pendientes (de entrada en almacen):");
+		pendientes = in.readLine();
+
+		addProducto(doc, codigo, nombre , descripcion, stock, pendientes, pasillo, estanteria, estante);
+	}
+
 	private static void addProducto(Document doc, String codigo, String nombre , String descripcion, String stock, String pendientes, String pasillo, String estanteria, String estante) {
 		Element prod = null;
 		NodeList productos = doc.getElementsByTagName("Productos");
+
+		if(productos == null) {
+			Element rootElement = (Element) doc.getElementsByTagName("Almacen");
+			Element produ = doc.createElement("Productos");			
+			rootElement.appendChild(produ);
+		}
 
 		for (int i = 0; i < productos.getLength(); i++) {
 			prod = (Element) productos.item(i);
@@ -478,6 +574,54 @@ public class App {
 		}
 	}
 
+	private static void valoresCliente(Document doc, String codigo) throws IOException {
+		String nombre;
+		String apellidos;
+		String email; 
+		String telefono;
+		String calle; 
+		String numero; 
+		String codigop; 
+		String poblacion;
+		String pais;
+		java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.println("Cliente ->");
+		System.out.print("Nombre:");
+		nombre = in.readLine();
+
+		System.out.print("Apellidos:");
+		apellidos = in.readLine();
+
+		if(codigo == null) {
+			System.out.print("ID:");
+			codigo = in.readLine();
+		}
+
+		System.out.print("Email:");
+		email = in.readLine();
+
+		System.out.print("Telefono de contacto:");
+		telefono = in.readLine();
+
+		System.out.println("Direccion ->");
+		System.out.print("\tCalle:");
+		calle = in.readLine();
+
+		System.out.print("\tNumero:");
+		numero = in.readLine();
+
+		System.out.print("\tCodigo postal:");
+		codigop = in.readLine();
+
+		System.out.print("\tPoblacion:");
+		poblacion = in.readLine();
+
+		System.out.print("\tPais:");
+		pais = in.readLine();		
+
+		addClient( doc,  nombre , apellidos , email, telefono, calle, numero, codigop, poblacion, pais, codigo);
+	}
 
 	private static void addClient(Document doc, String nombre , String apellidos , String email, String telefono, String calle, String numero, String codigop, String poblacion, String pais, String codigo) {
 		Element client =  null;
@@ -506,6 +650,61 @@ public class App {
 		}
 	}
 
+
+	private static void valoresPedido(Document doc, String codigo) throws IOException {		
+		String infoproducto;
+		String cantidad; 
+		String destinatario;
+		String fecha;
+		String calle;
+		String numero;
+		String codigop;
+		String poblacion;
+		String pais;
+		String id;
+		java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.println("Pedido ->");
+		System.out.print("\tId:");
+		id = in.readLine();
+
+		System.out.println("\tProducto ->");
+
+		if(codigo == null) {
+			System.out.print("\n\t\tCodigo:");
+			codigo = in.readLine();
+		}
+
+		System.out.print("\t\tNombre:");
+		infoproducto = in.readLine();
+
+		System.out.print("\t\tCantidad:");
+		cantidad = in.readLine();
+
+		System.out.println("Destinatario:");
+		destinatario = in.readLine();
+
+		System.out.println("Fecha de entrega estimada:");
+		fecha = in.readLine();
+
+		System.out.println("Direccion de entrega ->");
+		System.out.print("\tCalle:");
+		calle = in.readLine();
+
+		System.out.print("\tNumero:");
+		numero = in.readLine();
+
+		System.out.print("\tCodigo postal:");
+		codigop = in.readLine();
+
+		System.out.print("\tPoblacion:");
+		poblacion = in.readLine();
+
+		System.out.print("\tPais:");
+		pais = in.readLine();
+
+		addPedido(doc, infoproducto , cantidad ,destinatario, fecha, calle, numero, codigop, poblacion, pais, codigo, id);
+	}
 
 	private static void addPedido(Document doc, String nombreproducto , String cantidad ,String destinatario, String fecha, String calle, String numero, String codigop, String poblacion, String pais, String codigo, String id) {
 		Element ped = null;
@@ -538,6 +737,23 @@ public class App {
 	}
 
 
+	private static void eliminarElemAlmacen(Document doc, String Father, String Child, String Atributo, String codigo) {
+		NodeList elements = doc.getElementsByTagName(Father);
+		Element element = null;
+
+		// loop for each elements
+		for (int i = 0; i < elements.getLength(); i++) {
+			element = (Element) elements.item(i);			
+			String val = element.getAttribute(Atributo);
+			System.out.println(val);
+
+			if(val.equals(codigo)) {
+				element.getParentNode().removeChild(element);
+			}						
+		}
+	}
+
+
 	public static void clear() {
 		System.out.print("\033[2J");
 		System.out.flush();
@@ -553,7 +769,7 @@ public class App {
 
 		System.out.println("\nOpcion:");
 	}
-	
+
 	public static void menuPrincipal() {
 		System.out.println("**************************");
 		System.out.println("1.- Continuar con XML");
