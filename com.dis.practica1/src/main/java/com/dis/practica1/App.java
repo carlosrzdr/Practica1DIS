@@ -419,7 +419,7 @@ public class App {
         Element producto = ped.createElement("Producto");
         
         pedido.setAttribute("Id", id);
-        producto.setAttribute("Código", codigo);
+        producto.setAttribute("Codigo", codigo);
         
         pedido.appendChild(producto);
         producto.appendChild(createElements(ped, pedido, "Info", nombreproducto));
