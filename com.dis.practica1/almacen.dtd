@@ -1,4 +1,3 @@
-<!DOCTYPE Almacen [
 <!ELEMENT Almacen (Productos,Clientes,Pedidos)>
 
 <!ELEMENT Productos (Producto+)>
@@ -43,5 +42,3 @@
 <!ATTLIST ProductoPedido Codigo CDATA #REQUIRED>
 <!ATTLIST Cliente Id CDATA #REQUIRED>
 <!ATTLIST Pedido Id CDATA #REQUIRED>
-
-]>

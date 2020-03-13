@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE Almacen SYSTEM "Almacen.dtd">
 <Almacen>
           <Productos>
-                    <Producto Codigo="123">
-                              <NombreProducto>u</NombreProducto>
-                              <Descripcion>u</Descripcion>
-                              <Stock>u</Stock>
-                              <Pendientes>u</Pendientes>
+                    
+          <Producto Codigo="1234">
+                              <Nombre>t</Nombre>
+                              <Descripción>t</Descripción>
+                              <Stock>t</Stock>
+                              <Pendientes>t</Pendientes>
                               <Localizacion>
-                                        <Pasillo>u</Pasillo>
-                                        <Estanteria>u</Estanteria>
-                                        <Estante>u</Estante>
+                                        <Pasillo>t</Pasillo>
+                                        <Estanteria>t</Estanteria>
+                                        <Estante>t</Estante>
+                              </Localizacion>
+                    </Producto>
+          
+          
+          <Producto Codigo="123">
+                              <Nombre>q</Nombre>
+                              <Descripción>q</Descripción>
+                              <Stock>q</Stock>
+                              <Pendientes>q</Pendientes>
+                              <Localizacion>
+                                        <Pasillo>q</Pasillo>
+                                        <Estanteria>q</Estanteria>
+                                        <Estante>q</Estante>
                               </Localizacion>
                     </Producto>
           </Productos>

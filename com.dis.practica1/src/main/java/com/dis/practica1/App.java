@@ -60,6 +60,7 @@ public class App {
 				String filePath = "almacen.xml";
 				File xmlFile = new File(filePath);
 				doc = dBuilder.parse(xmlFile);
+		
 				//Funciones para trabajar con el xml		        
 				while(option != 0) {
 					clear();
@@ -89,20 +90,8 @@ public class App {
 						System.out.println("Codigo o Id del elemento a modificar:");
 						codigo = in.readLine();
 
-
-						if(option2 == 1) {
-							eliminarElemAlmacen(doc,  "Productos", "Producto", "Codigo", codigo);
-							valoresProducto(doc, codigo2);
-						}
-						else if (option2 == 2) {
-							eliminarElemAlmacen(doc,  "Clientes", "Cliente", "Id", codigo);
-							valoresCliente(doc, codigo2);
-						}
-						else if (option2 == 3) {
-							eliminarElemAlmacen(doc,  "Pedidos", "Pedido", "Id", codigo);
-							valoresPedido(doc, codigo2);
-						}
-						break;						
+						updateElement2(doc, option2, codigo);
+						break;
 					}
 				}				
 			}
@@ -265,6 +254,81 @@ public class App {
 				if(id.equals(codigo)) {
 					pedido.getParentNode().removeChild(pedido);
 					nuevo = productoSubMenu(doc, codigo);
+					flag++;
+				}
+
+			}
+			if(flag == 0) {
+				System.out.println("El Codigo introducido no corresponde con ningun \n\n");
+				in.readLine();
+			}
+			break;
+
+		}
+		return nuevo;
+	}
+	
+	public static Node updateElement2(Document doc, int option, String codigo) throws IOException, InterruptedException {
+		java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		Node nuevo = null;
+		int flag= 0;
+		switch (option) {
+		case 1:
+			NodeList productos = doc.getElementsByTagName("Producto");
+			Element producto = null;
+
+
+			for (int i = 0; i < productos.getLength(); i++) {
+				producto = (Element) productos.item(i);
+				String id = producto.getAttribute("Codigo");
+
+
+				if(id.equals(codigo)) {
+					producto.getParentNode().removeChild(producto);
+					valoresProducto(doc, codigo);
+					
+					flag++;
+				}
+
+			}
+			if(flag == 0) {
+				System.out.println("El Codigo introducido no corresponde con ningun producto\n\n");
+				in.readLine();
+			}
+			break;
+
+		case 2:
+			NodeList clientes = doc.getElementsByTagName("Cliente");
+			Element cliente = null;
+
+			for (int i = 0; i < clientes.getLength(); i++) {
+				cliente = (Element) clientes.item(i);
+				String id = cliente.getAttribute("Id");
+
+
+				if(id.equals(codigo)) {
+					cliente.getParentNode().removeChild(cliente);
+					valoresCliente(doc, codigo);
+					flag ++;
+				}
+			}
+			if(flag == 0) {
+				System.out.println("El Codigo introducido no corresponde con ningun cliente\n\n");
+				in.readLine();
+			}
+			break;
+
+		case 3:
+			NodeList pedidos = doc.getElementsByTagName("Pedido");
+			Element pedido = null;
+
+			for (int i = 0; i < pedidos.getLength(); i++) {
+				pedido = (Element) pedidos.item(i);
+				String id = pedido.getAttribute("Id");
+
+				if(id.equals(codigo)) {
+					pedido.getParentNode().removeChild(pedido);
+					valoresPedido(doc, codigo);
 					flag++;
 				}
 
@@ -733,23 +797,6 @@ public class App {
 			direccion.appendChild(createElements(doc, direccion, "CodigoPostalPedido", codigop));
 			direccion.appendChild(createElements(doc, direccion, "PoblacionPedido", poblacion));
 			direccion.appendChild(createElements(doc, direccion, "PaisPedido", pais));
-		}
-	}
-
-
-	private static void eliminarElemAlmacen(Document doc, String Father, String Child, String Atributo, String codigo) {
-		NodeList elements = doc.getElementsByTagName(Father);
-		Element element = null;
-
-		// loop for each elements
-		for (int i = 0; i < elements.getLength(); i++) {
-			element = (Element) elements.item(i);			
-			String val = element.getAttribute(Atributo);
-			System.out.println(val);
-
-			if(val.equals(codigo)) {
-				element.getParentNode().removeChild(element);
-			}						
 		}
 	}
 
