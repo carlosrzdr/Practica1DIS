@@ -3,7 +3,7 @@
 <Almacen>
           <Productos>
                     <Producto Codigo="123">
-                              <Nombre>f</Nombre>
+                              <NombreProducto>f</NombreProducto>
                               <Descripcion>f</Descripcion>
                               <Stock>f</Stock>
                               <Pendientes>f</Pendientes>
@@ -16,7 +16,7 @@
           </Productos>
           <Clientes>
                     <Cliente Id="1234">
-                              <Nombre>1234</Nombre>
+                              <Nombre>f</Nombre>
                               <Apellidos>f</Apellidos>
                               <Email>f</Email>
                               <Telefono>f</Telefono>
@@ -31,19 +31,19 @@
           </Clientes>
           <Pedidos>
                     <Pedido Id="12345">
-                              <Producto Código="f">
+                              <ProductoPedido Codigo="f">
                                         <Info>f</Info>
                                         <Cantidad>f</Cantidad>
-                              </Producto>
+                              </ProductoPedido>
                               <Destinatario>f</Destinatario>
                               <Fecha>f</Fecha>
-                              <Direccion>
-                                        <Calle>f</Calle>
-                                        <Numero>f</Numero>
-                                        <CodigoPostal>f</CodigoPostal>
-                                        <Poblacion>f</Poblacion>
-                                        <Pais>f</Pais>
-                              </Direccion>
+                              <DireccionPedido>
+                                        <CallePedido>f</CallePedido>
+                                        <NumeroPedido>f</NumeroPedido>
+                                        <CodigoPostalPedido>f</CodigoPostalPedido>
+                                        <PoblacionPedido>f</PoblacionPedido>
+                                        <PaisPedido>f</PaisPedido>
+                              </DireccionPedido>
                     </Pedido>
           </Pedidos>
 </Almacen>

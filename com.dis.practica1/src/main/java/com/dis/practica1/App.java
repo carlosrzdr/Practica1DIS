@@ -376,7 +376,7 @@ public class App {
         producto.setAttribute("Codigo", codigo);
 
         // Creamos los elementos de Producto
-        producto.appendChild(createElements(prod, producto, "Nombre", nombre));       
+        producto.appendChild(createElements(prod, producto, "NombreProducto", nombre));       
         producto.appendChild(createElements(prod, producto, "Descripcion", descripcion));      
         producto.appendChild(createElements(prod, producto, "Stock", stock));
         producto.appendChild(createElements(prod, producto, "Pendientes", pendientes));
@@ -415,8 +415,8 @@ public class App {
     private static Node createPedElement(Document ped, String nombreproducto , String cantidad , String destinatario,
                                          String fecha, String calle, String numero, String codigop, String poblacion, String pais, String codigo, String id) {
         Element pedido = ped.createElement("Pedido");
-        Element direccion = ped.createElement("Direccion");
-        Element producto = ped.createElement("Producto");
+        Element direccion = ped.createElement("DireccionPedido");
+        Element producto = ped.createElement("ProductoPedido");
         
         pedido.setAttribute("Id", id);
         producto.setAttribute("Codigo", codigo);
@@ -429,11 +429,11 @@ public class App {
         pedido.appendChild(createElements(ped, pedido, "Fecha", fecha));
         
         pedido.appendChild(direccion);
-        direccion.appendChild(createElements(ped, direccion, "Calle", calle));
-        direccion.appendChild(createElements(ped, direccion, "Numero", numero));
-        direccion.appendChild(createElements(ped, direccion, "CodigoPostal", codigop));
-        direccion.appendChild(createElements(ped, direccion, "Poblacion", poblacion));
-        direccion.appendChild(createElements(ped, direccion, "Pais", pais));
+        direccion.appendChild(createElements(ped, direccion, "CallePedido", calle));
+        direccion.appendChild(createElements(ped, direccion, "NumeroPedido", numero));
+        direccion.appendChild(createElements(ped, direccion, "CodigoPostalPedido", codigop));
+        direccion.appendChild(createElements(ped, direccion, "PoblacionPedido", poblacion));
+        direccion.appendChild(createElements(ped, direccion, "PaisPedido", pais));
         
         return pedido;
     }
