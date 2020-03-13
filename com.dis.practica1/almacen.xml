@@ -1,21 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE Almacen SYSTEM "Almacen.dtd">
 <Almacen>
+          <Productos>
+                    <Producto Codigo="123">
+                              <NombreProducto>fg</NombreProducto>
+                              <Descripcion>f</Descripcion>
+                              <Stock>f</Stock>
+                              <Pendientes>f</Pendientes>
+                              <Localizacion>
+                                        <Pasillo>f</Pasillo>
+                                        <Estanteria>f</Estanteria>
+                                        <Estante>f</Estante>
+                              </Localizacion>
+                    </Producto>
+          </Productos>
+          <Clientes>
+                    <Cliente Id="12">
+                              <Nombre>12</Nombre>
+                              <Apellidos>f</Apellidos>
+                              <Email>f</Email>
+                              <Telefono>f</Telefono>
+                              <Direccion>
+                                        <Calle>f</Calle>
+                                        <Numero>f</Numero>
+                                        <CodigoPostal>f</CodigoPostal>
+                                        <Poblacion>f</Poblacion>
+                                        <Pais>f</Pais>
+                              </Direccion>
+                    </Cliente>
+          </Clientes>
           <Pedidos>
-                    <Pedido Id="123">
-                              <ProductoPedido Codigo="122">
-                                        <Info>Si</Info>
-                                        <Cantidad>2</Cantidad>
-                              </ProductoPedido>
-                              <Destinatario>Ramon</Destinatario>
-                              <Fecha>25</Fecha>
-                              <DireccionPedido>
-                                        <CallePedido>Brulua</CallePedido>
-                                        <NumeroPedido>74</NumeroPedido>
-                                        <CodigoPostalPedido>28023</CodigoPostalPedido>
-                                        <PoblacionPedido>madrid</PoblacionPedido>
-                                        <PaisPedido>españa</PaisPedido>
-                              </DireccionPedido>
-                    </Pedido>
+                    <Producto Codigo="23">
+                              <NombreProducto>z</NombreProducto>
+                              <Descripcion>z</Descripcion>
+                              <Stock>z</Stock>
+                              <Pendientes>z</Pendientes>
+                              <Localizacion>
+                                        <Pasillo>z</Pasillo>
+                                        <Estanteria>z</Estanteria>
+                                        <Estante>z</Estante>
+                              </Localizacion>
+                    </Producto>
           </Pedidos>
 </Almacen>

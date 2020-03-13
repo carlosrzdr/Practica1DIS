@@ -46,8 +46,8 @@ public class App {
 			int flag1=0; 
 			int flag2=0; 
 			int flag3=0;
-			String codigo ="0";
-			String codigo2 ="0";
+			String codigo = null;
+			String codigo2 = null;
 			Node producto;
 			Node cliente;
 			Node pedido;
@@ -147,12 +147,16 @@ public class App {
 		}
 	}
 	
-	public static Node updateElement(Document doc, int option, String codigo) throws IOException {
+	public static Node updateElement(Document doc, int option, String codigo) throws IOException, InterruptedException {
+		java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		Node nuevo = null;
+		int flag= 0;
 		switch (option) {
 		case 1:
 			NodeList productos = doc.getElementsByTagName("Producto");
 			Element producto = null;
 			
+
 			for (int i = 0; i < productos.getLength(); i++) {
 	            producto = (Element) productos.item(i);
 	            String id = producto.getAttribute("Codigo");
@@ -160,15 +164,16 @@ public class App {
 	            
 	            if(id.equals(codigo)) {
 	            	producto.getParentNode().removeChild(producto);
-	            	Node nuevo = productoSubMenu(doc, codigo);
-	            	
-	            	return nuevo;
+	            	nuevo = productoSubMenu(doc, codigo);
+	            	flag++;
 	            }
 	            
 	        }
-			System.out.println("El Codigo introducido no corresponde con ningun producto\n\n");
-        	
-        	return null;
+			if(flag == 0) {
+				System.out.println("El Codigo introducido no corresponde con ningun producto\n\n");
+				in.readLine();
+			}
+        	break;
 			
 		case 2:
 			NodeList clientes = doc.getElementsByTagName("Cliente");
@@ -181,18 +186,16 @@ public class App {
 	            
 	            if(id.equals(codigo)) {
 	            	cliente.getParentNode().removeChild(cliente);
-	            	Node nuevo = productoSubMenu(doc, codigo);
-	            	
-	            	return nuevo;
+	            	nuevo = productoSubMenu(doc, codigo);
+	            	flag ++;
 	            }
-	            else {
-	            	System.out.println("El Id introducido no corresponde con ningun cliente\n\n");
-	            	
-	            	return null;
-	               	
-	            }	
-	        }
-			break;
+			}
+			if(flag == 0) {
+		        System.out.println("El Codigo introducido no corresponde con ningun cliente\n\n");
+		        in.readLine();
+			}
+	        break;
+	       
 		case 3:
 			NodeList pedidos = doc.getElementsByTagName("Pedido");
 			Element pedido = null;
@@ -201,25 +204,21 @@ public class App {
 	            pedido = (Element) pedidos.item(i);
 	            String id = pedido.getAttribute("Id");
             	
-	            
 	            if(id.equals(codigo)) {
 	            	pedido.getParentNode().removeChild(pedido);
-	            	Node nuevo = productoSubMenu(doc, codigo);
-	            	
-	            	return nuevo;
+	            	nuevo = productoSubMenu(doc, codigo);
+	            	flag++;
 	            }
-	            else {
-	            	System.out.println("El Id introducido no corresponde con ningun pedido\n\n");
-	            	
-	            	return null;
-	               	
-	            }	
+	            
 	        }
+			if(flag == 0) {
+				System.out.println("El Codigo introducido no corresponde con ningun \n\n");
+				in.readLine();
+			}
 			break;
+			
 		}
-		return null;
-		
-		
+		return nuevo;
     }
 	
 	public static Node productoSubMenu(Document prod, String codigo) throws IOException{
@@ -233,7 +232,7 @@ public class App {
         java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("Producto ->");
-        if(codigo == "0") {
+        if(codigo == null) {
 	        System.out.print("Codigo:");
 	        codigo = in.readLine();
         }
@@ -282,7 +281,7 @@ public class App {
 		System.out.print("Apellidos:");
         apellidos = in.readLine();
         
-        if(codigo == "0") {
+        if(codigo == null) {
         	System.out.print("ID:");
             codigo = in.readLine();
         }
@@ -332,7 +331,7 @@ public class App {
         
         System.out.println("\tProducto ->");
         
-        if(codigo == "0") {
+        if(codigo == null) {
         	System.out.print("\n\t\tCodigo:");
             codigo = in.readLine();
         }
