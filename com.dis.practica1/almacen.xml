@@ -1,48 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE Almacen SYSTEM "Almacen.dtd">
 <Almacen>
-          <Productos>
-                    <Producto Codigo="123">
-                              <NombreProducto>f</NombreProducto>
-                              <Descripcion>f</Descripcion>
-                              <Stock>f</Stock>
-                              <Pendientes>f</Pendientes>
-                              <Localizacion>
-                                        <Pasillo>f</Pasillo>
-                                        <Estanteria>f</Estanteria>
-                                        <Estante>f</Estante>
-                              </Localizacion>
-                    </Producto>
-          </Productos>
-          <Clientes>
-                    <Cliente Id="1234">
-                              <Nombre>f</Nombre>
-                              <Apellidos>f</Apellidos>
-                              <Email>f</Email>
-                              <Telefono>f</Telefono>
-                              <Direccion>
-                                        <Calle>f</Calle>
-                                        <Numero>f</Numero>
-                                        <CodigoPostal>f</CodigoPostal>
-                                        <Poblacion>f</Poblacion>
-                                        <Pais>f</Pais>
-                              </Direccion>
-                    </Cliente>
-          </Clientes>
           <Pedidos>
-                    <Pedido Id="12345">
-                              <ProductoPedido Codigo="f">
-                                        <Info>f</Info>
-                                        <Cantidad>f</Cantidad>
+                    <Pedido Id="123">
+                              <ProductoPedido Codigo="122">
+                                        <Info>Si</Info>
+                                        <Cantidad>2</Cantidad>
                               </ProductoPedido>
-                              <Destinatario>f</Destinatario>
-                              <Fecha>f</Fecha>
+                              <Destinatario>Ramon</Destinatario>
+                              <Fecha>25</Fecha>
                               <DireccionPedido>
-                                        <CallePedido>f</CallePedido>
-                                        <NumeroPedido>f</NumeroPedido>
-                                        <CodigoPostalPedido>f</CodigoPostalPedido>
-                                        <PoblacionPedido>f</PoblacionPedido>
-                                        <PaisPedido>f</PaisPedido>
+                                        <CallePedido>Brulua</CallePedido>
+                                        <NumeroPedido>74</NumeroPedido>
+                                        <CodigoPostalPedido>28023</CodigoPostalPedido>
+                                        <PoblacionPedido>madrid</PoblacionPedido>
+                                        <PaisPedido>españa</PaisPedido>
                               </DireccionPedido>
                     </Pedido>
           </Pedidos>

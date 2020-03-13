@@ -337,7 +337,7 @@ public class App {
             codigo = in.readLine();
         }
         
-        System.out.print("\t\tInfo:");
+        System.out.print("\t\tNombre:");
         infoproducto = in.readLine();
         
 		System.out.print("\t\tCantidad:");
@@ -365,7 +365,7 @@ public class App {
 		System.out.print("\tPais:");
 		pais = in.readLine();
 		
-		return (createPedElement(prod, codigo, infoproducto, cantidad, destinatario, fecha, calle, numero, codigop, poblacion, pais, id));
+		return (createPedElement(prod, infoproducto, cantidad, destinatario, fecha, calle, numero, codigop, poblacion, pais, codigo, id));
 	}
 	
     private static Node createProdElement(Document prod, String codigo, String nombre , String descripcion, String stock, 
