@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Almacen>
+          <Productos id = "111">
+                    <Producto Codigo="per">
+                              <Nombre>po</Nombre>
+                              <Descripcion>wert</Descripcion>
+                              <Stock>gsav</Stock>
+                              <Pendientes>at</Pendientes>
+                              <Localizacion>
+                                        <Pasillo>arg</Pasillo>
+                                        <Estanteria>agv</Estanteria>
+                                        <Estante>arg</Estante>
+                              </Localizacion>
+                    </Producto>
+          </Productos>
+</Almacen>

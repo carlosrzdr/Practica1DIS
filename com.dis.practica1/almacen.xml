@@ -2,48 +2,16 @@
 <!DOCTYPE Almacen SYSTEM "Almacen.dtd">
 <Almacen>
           <Productos>
-                    <Producto Codigo="e">
-                              <Nombre>df</Nombre>
-                              <Descripcion>df</Descripcion>
-                              <Stock>df</Stock>
-                              <Pendientes>df</Pendientes>
+                    <Producto Codigo="dsf">
+                              <Nombre>dg</Nombre>
+                              <Descripcion>rg</Descripcion>
+                              <Stock>rg</Stock>
+                              <Pendientes>e</Pendientes>
                               <Localizacion>
-                                        <Pasillo>df</Pasillo>
-                                        <Estanteria>df</Estanteria>
-                                        <Estante>df</Estante>
+                                        <Pasillo>rg</Pasillo>
+                                        <Estanteria/>
+                                        <Estante>er</Estante>
                               </Localizacion>
                     </Producto>
           </Productos>
-          <Clientes>
-                    <Cliente Id="e">
-                              <Nombre>df</Nombre>
-                              <Apellidos>df</Apellidos>
-                              <Email>df</Email>
-                              <Telefono>df</Telefono>
-                              <Direccion>
-                                        <Calle>df</Calle>
-                                        <Numero>df</Numero>
-                                        <CodigoPostal>df</CodigoPostal>
-                                        <Poblacion>df</Poblacion>
-                                        <Pais>df</Pais>
-                              </Direccion>
-                    </Cliente>
-          </Clientes>
-          <Pedidos>
-                    <Pedido Id="e">
-                              <Producto Código="df">
-                                        <Info>e</Info>
-                                        <Cantidad>df</Cantidad>
-                              </Producto>
-                              <Destinatario>df</Destinatario>
-                              <Fecha>df</Fecha>
-                              <Direccion>
-                                        <Calle>df</Calle>
-                                        <Numero>df</Numero>
-                                        <CodigoPostal>df</CodigoPostal>
-                                        <Poblacion>df</Poblacion>
-                                        <Pais>df</Pais>
-                              </Direccion>
-                    </Pedido>
-          </Pedidos>
 </Almacen>

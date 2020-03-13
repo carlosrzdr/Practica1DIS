@@ -26,7 +26,7 @@ public class App {
 		
 		try {
 			dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.newDocument();
+			Document doc = dBuilder.newDocument();			
 			
 			// Creamos elementos en el documento
 			Element rootElement = doc.createElement("Almacen");
@@ -37,9 +37,9 @@ public class App {
 			// Creamos los elementos Productos, Clientes y Pedidos
 			Element productos = doc.createElement("Productos");            
 			Element clientes = doc.createElement("Clientes");            			
-			Element pedidos = doc.createElement("Pedidos");            
-			
-		
+			Element pedidos = doc.createElement("Pedidos");
+
+			            			
 			int option = -1;    
 			int flag1=0; 
 			int flag2=0; 
@@ -58,12 +58,12 @@ public class App {
                 switch(option) {
                     case 1:
                         clear();
-                        if(flag1==0) {
+                        if(flag1==2) {                        	
                         	rootElement.appendChild(productos);
                         	flag1++;
                         }
-                        producto = productoSubMenu(doc);
-                        productos.appendChild(producto);
+                        producto = productoSubMenu(doc);                        
+                        productos.appendChild(producto);                                                
                         
                         break;
                     case 2:
@@ -85,7 +85,13 @@ public class App {
                         pedido = pedidoSubMenu(doc);
                         pedidos.appendChild(pedido);
                         
-                        break;
+                        break;                        
+                    case 4:
+                    	String filePath = "prueba.xml";
+        				File xmlFile = new File(filePath);
+        				doc = dBuilder.parse(xmlFile);        				
+                    	break;
+                    	
 				}
 			}
 		
@@ -119,6 +125,7 @@ public class App {
 			e.printStackTrace();
 		}
 	}
+		
 	
 	public static void doc(int n) {
 		
