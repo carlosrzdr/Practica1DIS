@@ -1,48 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE Almacen SYSTEM "almacen.dtd">
 <Almacen>
-          <Productos>
-                    <Producto Codigo="123">
-                              <NombreProducto>f</NombreProducto>
-                              <Descripcion>f</Descripcion>
-                              <Stock>f</Stock>
-                              <Pendientes>f</Pendientes>
-                              <Localizacion>
-                                        <Pasillo>f</Pasillo>
-                                        <Estanteria>f</Estanteria>
-                                        <Estante>f</Estante>
-                              </Localizacion>
-                    </Producto>
-          </Productos>
-          <Clientes>
-                    <Cliente Id="e">
-                              <Nombre>321</Nombre>
-                              <Apellidos>er</Apellidos>
-                              <Email>re</Email>
-                              <Telefono>e</Telefono>
-                              <Direccion>
-                                        <Calle>ew</Calle>
-                                        <Numero>w</Numero>
-                                        <CodigoPostal>w</CodigoPostal>
-                                        <Poblacion>w</Poblacion>
-                                        <Pais>w</Pais>
-                              </Direccion>
-                    </Cliente>
-          </Clientes>
-          <Pedidos>
-                    <Pedido Id="345">
-                              <ProductoPedido Codigo="f">
-                                        <Info>f</Info>
-                                        <Cantidad>f</Cantidad>
-                              </ProductoPedido>
-                              <Destinatario>f</Destinatario>
-                              <Fecha>f</Fecha>
-                              <DireccionPedido>
-                                        <CallePedido>f</CallePedido>
-                                        <NumeroPedido>f</NumeroPedido>
-                                        <CodigoPostalPedido>f</CodigoPostalPedido>
-                                        <PoblacionPedido>f</PoblacionPedido>
-                                        <PaisPedido>f</PaisPedido>
-                              </DireccionPedido>
-                    </Pedido>
-          </Pedidos>
+    <Productos>
+        <Producto Codigo="1">
+            <NombreProducto>Lejia</NombreProducto>
+            <Descripcion>Lejia Estrella</Descripcion>
+            <Stock>2</Stock>
+            <Pendientes>0</Pendientes>
+            <Localizacion>
+                <Pasillo>3</Pasillo>
+                <Estanteria>3</Estanteria>
+                <Estante>5</Estante>
+            </Localizacion>
+        </Producto>
+    </Productos>
+    <Clientes>
+        <Cliente id="3">
+            <Nombre>Javier</Nombre>
+            <Apellidos>Gómez</Apellidos>
+            <Email>javier.gomez@gmail.com</Email>
+            <Telefono>897987890</Telefono>
+            <Direccion>
+                <Calle>Alta 32</Calle>
+                <Numero>32</Numero>
+                <CodigoPostal>23445</CodigoPostal>
+                <Poblacion>Ávila</Poblacion>
+                <Pais>España</Pais>
+            </Direccion>
+        </Cliente>
+    </Clientes>
+    <Pedidos>
+        <Pedido id="1">
+            <ProductoPedido Codigo="1">
+                <Info>Limpieza</Info>
+                <Cantidad>1</Cantidad>
+            </ProductoPedido>
+            <Destinatario>Javier Gómez</Destinatario>
+            <Fecha>23/06/2020</Fecha>
+            <DireccionPedido>
+                <CallePedido>Alta</CallePedido>
+                <NumeroPedido>32</NumeroPedido>
+                <CodigoPostalPedido>23445</CodigoPostalPedido>
+                <PoblacionPedido>Ávila</PoblacionPedido>
+                <PaisPedido>España</PaisPedido>
+            </DireccionPedido>
+        </Pedido>
+    </Pedidos>
 </Almacen>
