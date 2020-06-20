@@ -25,6 +25,18 @@ public class Producto {
 		this.estante = estante;
 	}
 
+	public Producto(Producto prod) {
+		super();
+		this.codigo = prod.getCodigo();
+		this.nombreProducto = prod.getNombreProducto();
+		this.descripcion = prod.getDescripcion();
+		this.stock = prod.getStock();
+		this.pendientes = prod.getStock();
+		this.pasillo = prod.getPasillo();
+		this.estanteria = prod.getEstanteria();
+		this.estante = prod.getEstante();
+	}
+
 	public String getCodigo() {
 		return codigo;
 	}

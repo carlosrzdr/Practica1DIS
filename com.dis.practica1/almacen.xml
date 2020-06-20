@@ -28,6 +28,19 @@
                 <Pais>España</Pais>
             </Direccion>
         </Cliente>
+        <Cliente id="4">
+            <Nombre>Javier</Nombre>
+            <Apellidos>Gómez</Apellidos>
+            <Email>javier.gomez@gmail.com</Email>
+            <Telefono>897987890</Telefono>
+            <Direccion>
+                <Calle>Alta 32</Calle>
+                <Numero>32</Numero>
+                <CodigoPostal>23445</CodigoPostal>
+                <Poblacion>Ávila</Poblacion>
+                <Pais>España</Pais>
+            </Direccion>
+        </Cliente>
     </Clientes>
     <Pedidos>
         <Pedido id="1">

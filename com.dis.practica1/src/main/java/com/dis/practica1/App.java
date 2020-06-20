@@ -21,12 +21,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
-import com.dis.practica1.Cliente;
-import com.dis.practica1.DatosItem;
-import com.dis.practica1.Menu;
-import com.dis.practica1.Pedido;
-import com.dis.practica1.Producto;
-
 public class App 
 {			
 	
@@ -105,7 +99,7 @@ public class App
     	String filePath = "almacen.xml";
         File xmlFile = new File(filePath);
         doc = dBuilder.parse(xmlFile);
-        rootElement = (Element) doc.getElementsByTagName("Almancen").item(0);
+        rootElement = (Element) doc.getElementsByTagName("Almacen").item(0);
         productos = (Element) doc.getElementsByTagName("Productos").item(0);
         clientes = (Element) doc.getElementsByTagName("Clientes").item(0);
         pedidos = (Element) doc.getElementsByTagName("Pedidos").item(0);
