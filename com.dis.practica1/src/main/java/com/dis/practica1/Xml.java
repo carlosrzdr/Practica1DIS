@@ -49,7 +49,9 @@ public class Xml {
         clientes = document.getElementsByTagName("Clientes").item(0);
         pedidos = document.getElementsByTagName("Pedidos").item(0);
 
-        // TODO - Añadir llamadas para cargar los productos, clientes y pedidos que existian en el XML
+        loadProductos(alm_logico);
+        loadClientes(alm_logico);
+        loadPedidos(alm_logico);
     }
 
     private void loadProductos(Almacen alm_logico) {
@@ -104,5 +106,33 @@ public class Xml {
         }
     }
 
-    // TODO - Crear método para la carga de pedidos desde un XML existente
+    private void loadPedidos(Almacen alm_logico) {
+        String id;
+        String codigo_producto;
+        String info;
+        String cantidad;
+        String destinatario;
+        String fecha;	
+        String calle;
+        String numero;
+        String codigoPostal;
+        String poblacion;
+        String pais;
+
+        for(int i = 0; i < pedidos.getChildNodes().getLength(); i++) {
+            id = pedidos.getChildNodes().item(i).getAttributes().item(0).getTextContent();
+            codigo_producto = pedidos.getChildNodes().item(i).getChildNodes().item(0).getAttributes().item(0).getTextContent();
+            info = pedidos.getChildNodes().item(i).getChildNodes().item(0).getChildNodes().item(0).getTextContent();
+            cantidad = pedidos.getChildNodes().item(i).getChildNodes().item(0).getChildNodes().item(1).getTextContent();
+            destinatario = pedidos.getChildNodes().item(i).getChildNodes().item(1).getTextContent();
+            fecha = pedidos.getChildNodes().item(i).getChildNodes().item(2).getTextContent();
+            calle = pedidos.getChildNodes().item(i).getChildNodes().item(3).getChildNodes().item(0).getTextContent();
+            numero = pedidos.getChildNodes().item(i).getChildNodes().item(3).getChildNodes().item(1).getTextContent();
+            codigoPostal = pedidos.getChildNodes().item(i).getChildNodes().item(3).getChildNodes().item(2).getTextContent();
+            poblacion = pedidos.getChildNodes().item(i).getChildNodes().item(3).getChildNodes().item(3).getTextContent();
+            pais = pedidos.getChildNodes().item(i).getChildNodes().item(3).getChildNodes().item(4).getTextContent();
+
+            alm_logico.getPedidos().add(new Pedido(id, codigo_producto, info, cantidad, destinatario, fecha, calle, numero, codigoPostal, poblacion, pais));
+        }
+    }
 }
