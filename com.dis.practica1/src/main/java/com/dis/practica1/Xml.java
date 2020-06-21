@@ -6,8 +6,17 @@ import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
+import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
+import org.w3c.dom.DocumentType;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
@@ -18,8 +27,7 @@ public class Xml {
     private Node clientes;
     private Node pedidos;
 
-    public Xml() {
-    }
+    public Xml() {}
 
     public void newXml() throws ParserConfigurationException {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -135,4 +143,95 @@ public class Xml {
             alm_logico.getPedidos().add(new Pedido(id, codigo_producto, info, cantidad, destinatario, fecha, calle, numero, codigoPostal, poblacion, pais));
         }
     }
+
+    public void addProducto(Producto producto) {
+        Element nodoProducto = document.createElement("Producto"); 
+        Node nodoLocalizacion = document.createElement("Localizacion");
+        
+        nodoProducto.setAttribute("Codigo", producto.getCodigo());
+		nodoProducto.appendChild(crearEtiqueta("NombreProducto", producto.getNombreProducto()));
+		nodoProducto.appendChild(crearEtiqueta("Descripcion", producto.getDescripcion()));
+		nodoProducto.appendChild(crearEtiqueta("Stock", producto.getStock()));
+		nodoProducto.appendChild(crearEtiqueta("Pendientes", producto.getPendientes()));
+        nodoProducto.appendChild(nodoLocalizacion);
+        
+        nodoLocalizacion.appendChild(crearEtiqueta("Pasillo", producto.getPasillo()));
+		nodoLocalizacion.appendChild(crearEtiqueta("Estanteria", producto.getEstanteria()));
+        nodoLocalizacion.appendChild(crearEtiqueta("Estante", producto.getEstante()));
+        
+        productos.appendChild(nodoProducto);
+    }
+
+    public void addCliente(Cliente cliente) {
+        Element nodoCliente = document.createElement("Cliente");
+        Node nodoDireccion = document.createElement("Direccion");
+        
+        nodoCliente.setAttribute("id", cliente.getId());
+    	nodoCliente.appendChild(crearEtiqueta("Nombre", cliente.getNombre()));
+    	nodoCliente.appendChild(crearEtiqueta("Apellidos", cliente.getApellidos()));
+    	nodoCliente.appendChild(crearEtiqueta("Email", cliente.getEmail()));
+    	nodoCliente.appendChild(crearEtiqueta("Telefono", cliente.getTelefono()));
+        nodoCliente.appendChild(nodoDireccion);
+        
+        nodoDireccion.appendChild(crearEtiqueta("Calle", cliente.getCalle()));
+    	nodoDireccion.appendChild(crearEtiqueta("Numero", cliente.getNumero()));
+    	nodoDireccion.appendChild(crearEtiqueta("CodigoPostal", cliente.getCodigoPostal()));
+    	nodoDireccion.appendChild(crearEtiqueta("Poblacion", cliente.getPoblacion()));
+        nodoDireccion.appendChild(crearEtiqueta("Pais", cliente.getPais()));
+        
+        clientes.appendChild(nodoCliente);
+    }
+
+    public void addPedido(Pedido pedido) {
+        Element nodoPedido = document.createElement("Pedido");
+    	Element nodoProducto = document.createElement("ProductoPedido");
+        Node nodoDireccion = document.createElement("DireccionPedido");
+        
+        nodoPedido.setAttribute("id", pedido.getId());
+        nodoPedido.appendChild(nodoProducto);
+        
+        nodoProducto.setAttribute("Codigo", pedido.getCodigo());
+    	nodoProducto.appendChild(crearEtiqueta("Info", pedido.getInfo()));
+        nodoProducto.appendChild(crearEtiqueta("Cantidad", pedido.getCantidad()));
+        
+        nodoPedido.appendChild(crearEtiqueta("Destinatario", pedido.getDestinatario()));
+    	nodoPedido.appendChild(crearEtiqueta("Fecha", pedido.getFecha()));
+        nodoPedido.appendChild(nodoDireccion);
+        
+        nodoDireccion.appendChild(crearEtiqueta("CallePedido", pedido.getCalle()));
+    	nodoDireccion.appendChild(crearEtiqueta("NumeroPedido", pedido.getNumero()));
+    	nodoDireccion.appendChild(crearEtiqueta("CodigoPostalPedido", pedido.getCodigoPostal()));
+    	nodoDireccion.appendChild(crearEtiqueta("PoblacionPedido", pedido.getPoblacion()));
+        nodoDireccion.appendChild(crearEtiqueta("PaisPedido", pedido.getPais()));
+        
+        pedidos.appendChild(nodoPedido);
+    }
+
+    private Node crearEtiqueta(String nombre, String contenido) {
+		Element node = document.createElement(nombre); 
+		node.appendChild(document.createTextNode(contenido));
+        
+        return node;
+    }
+    
+    public void save() throws TransformerException {
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = transformerFactory.newTransformer();
+				
+		DOMImplementation domImpl = document.getImplementation();
+		DocumentType doctype = domImpl.createDocumentType("doctype","PracticaDis","almacen.dtd");
+		
+		transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, doctype.getSystemId()); //incluir DTD
+		transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no"); //Cabecera xml
+		transformer.setOutputProperty(OutputKeys.METHOD, "xml");				
+		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4"); //n-espacios para tabular		
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+					
+		StreamResult console = new StreamResult(System.out);
+		StreamResult file = new StreamResult(new File("almacen.xml"));
+
+		//Mostrar resultado: 
+		transformer.transform(new DOMSource(document), console); //Por consola
+		transformer.transform(new DOMSource(document), file); //Escribir en el documento
+	}
 }

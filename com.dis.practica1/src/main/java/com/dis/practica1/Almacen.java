@@ -16,7 +16,7 @@ public class Almacen {
         pedidos = new ArrayList<Pedido>();
     }
 
-    public void addProducto() throws IOException {
+    public void addProducto(Xml xml) throws IOException {
         String codigo;
         String nombreProducto;
         String descripcion;
@@ -24,7 +24,8 @@ public class Almacen {
         String pendientes;	
         String pasillo;
         String estanteria;
-	    String estante;
+        String estante;
+        Producto producto;
         
         java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
@@ -52,10 +53,12 @@ public class Almacen {
         System.out.print("Estante: ");
         estante = in.readLine();
 
-        productos.add(new Producto(codigo, nombreProducto, descripcion, stock, pendientes, pasillo, estanteria, estante));
+        producto = new Producto(codigo, nombreProducto, descripcion, stock, pendientes, pasillo, estanteria, estante);
+        productos.add(producto);
+        xml.addProducto(producto);
     }
 
-    public void addCliente() throws IOException {
+    public void addCliente(Xml xml) throws IOException {
         String id;
         String nombre;
         String apellidos;
@@ -66,6 +69,7 @@ public class Almacen {
         String codigoPostal;
         String poblacion;
         String pais;
+        Cliente cliente;
 
         java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
@@ -99,10 +103,12 @@ public class Almacen {
         System.out.print("País: ");
         pais = in.readLine();
 
-        clientes.add(new Cliente(id, nombre, apellidos, email, telefono, calle, numero, codigoPostal, poblacion, pais));
+        cliente = new Cliente(id, nombre, apellidos, email, telefono, calle, numero, codigoPostal, poblacion, pais);
+        clientes.add(cliente);
+        xml.addCliente(cliente);
     }
 
-    public void addPedido() throws IOException {
+    public void addPedido(Xml xml) throws IOException {
         String id;
         String codigo;
         String info;
@@ -114,6 +120,7 @@ public class Almacen {
         String codigoPostal;
         String poblacion;
         String pais;
+        Pedido pedido;
 
         java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
@@ -150,7 +157,9 @@ public class Almacen {
         System.out.print("País: ");
         pais = in.readLine();
 
-        pedidos.add(new Pedido(id, codigo, info, cantidad, destinatario, fecha, calle, numero, codigoPostal, poblacion, pais));
+        pedido = new Pedido(id, codigo, info, cantidad, destinatario, fecha, calle, numero, codigoPostal, poblacion, pais);
+        pedidos.add(pedido);
+        xml.addPedido(pedido);
     }
 
     public ArrayList<Producto> getProductos() {
