@@ -9,11 +9,9 @@ public class Producto {
 	private String pasillo;
 	private String estanteria;
 	private String estante;
-	
-	public Producto() {}
 
 	public Producto(String codigo, String nombreProducto, String descripcion, String stock, String pendientes,
-			String pasillo, String estanteria, String estante) {
+					String pasillo, String estanteria, String estante) {
 		super();
 		this.codigo = codigo;
 		this.nombreProducto = nombreProducto;
@@ -23,18 +21,6 @@ public class Producto {
 		this.pasillo = pasillo;
 		this.estanteria = estanteria;
 		this.estante = estante;
-	}
-
-	public Producto(Producto prod) {
-		super();
-		this.codigo = prod.getCodigo();
-		this.nombreProducto = prod.getNombreProducto();
-		this.descripcion = prod.getDescripcion();
-		this.stock = prod.getStock();
-		this.pendientes = prod.getStock();
-		this.pasillo = prod.getPasillo();
-		this.estanteria = prod.getEstanteria();
-		this.estante = prod.getEstante();
 	}
 
 	public String getCodigo() {

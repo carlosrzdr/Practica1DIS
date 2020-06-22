@@ -12,11 +12,9 @@ public class Pedido {
 	private String codigoPostal;
 	private String poblacion;
 	private String pais;
-	
-	public Pedido() {}
 
 	public Pedido(String id, String codigo, String info, String cantidad, String destinatario, String fecha,
-			String calle, String numero, String codigoPostal, String poblacion, String pais) {
+				  String calle, String numero, String codigoPostal, String poblacion, String pais) {
 		super();
 		this.id = id;
 		this.codigo = codigo;
