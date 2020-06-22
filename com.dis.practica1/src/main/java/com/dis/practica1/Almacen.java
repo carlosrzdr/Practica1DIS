@@ -21,7 +21,7 @@ public class Almacen {
         String nombreProducto;
         String descripcion;
         String stock;
-        String pendientes;	
+        String pendientes;
         String pasillo;
         String estanteria;
         String estante;
@@ -63,7 +63,7 @@ public class Almacen {
         String nombre;
         String apellidos;
         String email;
-        String telefono;	
+        String telefono;
         String calle;
         String numero;
         String codigoPostal;
